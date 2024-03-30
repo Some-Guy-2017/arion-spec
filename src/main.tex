@@ -6,6 +6,8 @@
 \author{Joseph Hare}
 \date{\today}
 
+\setlength\parindent{0pt}
+
 \makeatletter
 \newcommand{\thetitle}{\@title}
 \newcommand{\theauthor}{\@author}
@@ -141,12 +143,41 @@ Help:
 Quit: Quits the program.
 
 \section{User Classes and Characteristics}
+\begin{itemize}
+    \item Language learners, who want to use Arion to study new vocabulary or remember previously seen words.
+    \item Students, who want to memorize content for their classes.
+    \item Programmers who are interested in furthering the software by developing it or fixing bugs.
+\end{itemize}
 
 \section{Operating Environment}
 
+\begin{flushleft} % text does not fill the line, so must flush left to avoid error.
+    Arion was designed to work on PCs with a Java Virtual Machine. \\
+
+    It works on the following operating systems: \\
+    \begin{itemize}
+        \item Windows 2000
+        \item Windows XP
+        \item Windows Vista
+        \item Windows 7
+        \item Windows 8
+        \item Windows 10
+        \item Windows 11
+        \item Mac OS
+        \item Linux
+    \end{itemize}
+\end{flushleft}
+
 \section{Design and Implementation Constraints}
+Arion is implemented in Java, using Java SWING and Abstract Took Kit (AWT) for the Graphical User Interface (GUI).
+It reads and writes to the user’s machine, and requires the Java Virtual Machine (JVM) to be installed.
 
 \section{User Documentation}
+\begin{flushleft}
+    A user guide is included in the Arion help menu. \\
+    Arion has a user manual: \\
+    \url{https://drive.google.com/file/d/1R3L0F9FErr2sn22dniuIB0acMaw8OTUr/view?usp=sharing}
+\end{flushleft}
 
 \section{Assumptions and Dependencies}
 
