@@ -19,11 +19,13 @@
 \newcommand{\smallspace}{\vspace{0.5cm}}
 
 \usepackage{xcolor}
-\usepackage{listings}
-\usepackage{underscore}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
 \usepackage{hyperref}
+\usepackage[shortlabels]{enumitem}
+
+%\usepackage{listings}
+%\usepackage{underscore}
+%\usepackage[utf8]{inputenc}
+%\usepackage[english]{babel}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -33,8 +35,8 @@
     pdfkeywords={SRS, Software, Specification, Arion, Flashcards, Spaced Repetition},
     colorlinks=true,   % false: boxed links; true: colored links
     linkcolor=black,   % color of internal links
-    citecolor=magenta,   % color of links to bibliography
-    filecolor=orange, % color of file links
+    citecolor=magenta, % color of links to bibliography
+    filecolor=orange,  % color of file links
     urlcolor=cyan,     % color of external links
     linktoc=page       % only page is linked
 }
@@ -55,7 +57,7 @@
         \bigspace
 
         \LARGE
-        Version \version approved\\
+        Version \version \\
         \smallspace
         Prepared by \theauthor\\
         \smallspace
@@ -122,10 +124,10 @@ Edit:
 \begin{itemize}
     \item Browse: Displays the flashcards in a table.
     \begin{itemize}
-        \item View: View the flashcards.
         \item Delete: Delete a flashcard.
         \item Edit: Edit a flashcard.
     \end{itemize}
+    \item Add: Adds a flashcard to the list.
 \end{itemize}
 
 View:
@@ -156,8 +158,6 @@ Quit: Quits the program.
 
     It works on the following operating systems: \\
     \begin{itemize}
-        \item Windows 2000
-        \item Windows XP
         \item Windows Vista
         \item Windows 7
         \item Windows 8
@@ -180,89 +180,296 @@ It reads and writes to the user’s machine, and requires the Java Virtual Machi
 \end{flushleft}
 
 \section{Assumptions and Dependencies}
-Arion is written in Java, so requires the JVM to be installed.
-
-
-\chapter{System Features}
-$<$This template illustrates organizing the functional requirements for the 
-product by system features, the major services provided by the product. You may 
-prefer to organize this section by use case, mode of operation, user class, 
-object class, functional hierarchy, or combinations of these, whatever makes the 
-most logical sense for your product.$>$
-
-\section{System Feature 1}
-$<$Don’t really say “System Feature 1.” State the feature name in just a few 
-words.$>$
-
-\subsection{Description and Priority}
-$<$Provide a short description of the feature and indicate whether it is of 
-High, Medium, or Low priority. You could also include specific priority 
-component ratings, such as benefit, penalty, cost, and risk (each rated on a 
-relative scale from a low of 1 to a high of 9).$>$
-
-\subsection{Stimulus/Response Sequences}
-$<$List the sequences of user actions and system responses that stimulate the 
-behavior defined for this feature. These will correspond to the dialog elements 
-associated with use cases.$>$
-
-\subsection{Functional Requirements}
-$<$Itemize the detailed functional requirements associated with this feature.  
-These are the software capabilities that must be present in order for the user 
-to carry out the services provided by the feature, or to execute the use case.  
-Include how the product should respond to anticipated error conditions or 
-invalid inputs. Requirements should be concise, complete, unambiguous, 
-verifiable, and necessary. Use “TBD” as a placeholder to indicate when necessary 
-information is not yet available.$>$
-
-$<$Each requirement should be uniquely identified with a sequence number or a 
-meaningful tag of some kind.$>$
-
-REQ-1:	REQ-2:
-
-\section{System Feature 2 (and so on)}
+Arion is written in Java, so requires a JVM version of at least 17 to run.
 
 
 \chapter{External Interface Requirements}
 
 \section{User Interfaces}
-$<$Describe the logical characteristics of each interface between the software 
-product and the users. This may include sample screen images, any GUI standards 
-or product family style guides that are to be followed, screen layout 
-constraints, standard buttons and functions (e.g., help) that will appear on 
-every screen, keyboard shortcuts, error message display standards, and so on.  
-Define the software components for which a user interface is needed. Details of 
-the user interface design should be documented in a separate user interface 
-specification.$>$
+\begin{itemize}
+    \item
+        Main Screen: The default screen that shows when the user first starts the program.
+        It includes a study button that allows the user to enter study mode,
+        and an add button that enters add mode.
+    \item 
+        Browse: A table listing the flashcards, with editable fields and allowing users to 
+        delete entries. Back button allows users to return to the main screen.
+    \item
+        Study: Displays the flashcards and a bar with buttons. The bar either contains a 
+        flip button to flip the card, or a correct button and an incorrect button that
+        allows users to self judge their memory. Has a back button to return to 
+        the main screen.
+    \item 
+        Sort: Has a drop-down allowing users to sort based on flashcard fronts or backs,
+        and a drop-down for sorting in lexicographical or reverse lexicographical order. 
+        Also has a button for confirming the sort, and a back button to return to the main screen.
+    \item 
+        Guide: A pop-up window with a number of screens, each detailing the usage of a
+        different part of the program. Has an exit button to return to the main program.
+    \item 
+        About: A pop-up window detailing the Arion program, including its purpose and development.
+        Has an exit button to return to the main program.
+    \item 
+        Add: A screen with two labeled editable text fields for users to enter the front and
+        back of a new card. Also has a confirm button to add the flashcard to the list, and
+        a back button to return.
+\end{itemize}
 
 \section{Hardware Interfaces}
-$<$Describe the logical and physical characteristics of each interface between 
-the software product and the hardware components of the system. This may include 
-the supported device types, the nature of the data and control interactions 
-between the software and the hardware, and communication protocols to be 
-used.$>$
+Since Arion runs in a JVM, all hardware must be supported by Java.
 
 \section{Software Interfaces}
-$<$Describe the connections between this product and other specific software 
-components (name and version), including databases, operating systems, tools, 
-libraries, and integrated commercial components. Identify the data items or 
-messages coming into the system and going out and describe the purpose of each.  
-Describe the services needed and the nature of communications. Refer to 
-documents that describe detailed application programming interface protocols.  
-Identify data that will be shared across software components. If the data 
-sharing mechanism must be implemented in a specific way (for example, use of a 
-global data area in a multitasking operating system), specify this as an 
-implementation constraint.$>$
+Arion is written in Java, so requires a JVM version 17 or higher to be installed on the system.
 
 \section{Communications Interfaces}
-$<$Describe the requirements associated with any communications functions 
-required by this product, including e-mail, web browser, network server 
-communications protocols, electronic forms, and so on. Define any pertinent 
-message formatting. Identify any communication standards that will be used, such 
-as FTP or HTTP. Specify any communication security or encryption issues, data 
-transfer rates, and synchronization mechanisms.$>$
+Arion is a standalone program, so has no external communications with other services.
 
 
-\chapter{Other Nonfunctional Requirements}
+\chapter{System Features}
+
+\section{Load}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} User clicks the Load menu item. \\
+            \makebox[1.7cm][l]{Stimulus:} User opens the program. \\
+            \makebox[1.7cm][l]{Response:} \\
+            \begin{enumerate}[1.]
+                \item Ask the user to confirm overwriting the previous flashcards.
+                \item Open the database file for reading.
+                \item Parse the file for flashcards.
+                \item Validate each flashcard.
+                \item Write each flashcard into the local array.
+                \item Close the file.
+            \end{enumerate}
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must open the program or click the Load menu item.
+            \item The user must confirm overwriting their previous flashcards.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        \begin{itemize}
+            \item The system must have permission to read from the database file.
+            \item The system must have enough memory for the flashcards.
+        \end{itemize}
+
+\section{Save}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} User clicks the Save menu item. \\
+            \makebox[1.7cm][l]{Stimulus:} User closes the program. \\
+            \makebox[1.7cm][l]{Response:} \\
+            \begin{enumerate}[1.]
+                \item Ask the user to confirm overwriting the flashcards stored in the database file.
+                \item Open the database file for writing.
+                \item Write each flashcard to the file.
+                \item Close the file.
+            \end{enumerate}
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the Save menu item or close the program.
+            \item The user must confirm overwriting their previously stored flashcards.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        \begin{itemize}
+            \item The system must have permission to write to the database file.
+        \end{itemize}
+
+\section{Browse}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Browse menu item. \\
+            \makebox[1.7cm][l]{Response:} The system brings up the Browse screen. \\
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the Browse menu item.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        There are no system requirements.
+
+\section{Delete}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the delete button next to the flashcard entry in the browse screen table. \\
+            \makebox[1.7cm][l]{Response:} \\
+            \begin{enumerate}[1.]
+                \item Ask the user to confirm their selection.
+                \item Delete the selected flashcard from the list.
+                \item Update the displayed table.
+            \end{enumerate}
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the delete button in the Browse GUI.
+            \item The user must confirm their selection.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        \begin{itemize}
+            \item The system must be in browse mode.
+        \end{itemize}
+
+\section{Edit}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user edits a field in the flashcard table. \\
+            \makebox[1.7cm][l]{Response:} The system stores the edited information. \\
+            \smallspace
+            \makebox[1.7cm][l]{Stimulus:} The user presses the Update button next to the flashcard in the browse screen table. \\
+            \makebox[1.7cm][l]{Response:} The system writes the edited information to the internally stored list of flashcards. \\
+        \end{flushleft}
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the update button to update the information.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        \begin{itemize}
+            \item The system must be in browse mode.
+        \end{itemize}
+
+\section{Add}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Add menu item. \\
+            \makebox[1.7cm][l]{Response:} The system brings up the add screen. \\
+            \smallspace
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Add button in the add screen. \\
+            \makebox[1.7cm][l]{Response:} The system adds the new contact to the contact list. \\
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must enter the new information for the contact.
+            \item The user must click the Add button to confirm adding the new contact.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        \begin{itemize}
+            \item The system must have enough memory for the new flashcard.
+        \end{itemize}
+
+\section{Study}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the study button  \\
+            \makebox[1.7cm][l]{Response:} \\
+            \begin{enumerate}[1.]
+                \item The system brings up the study GUI.
+                \item For each flashcard in the list of cards to study today:
+                \begin{enumerate}[a.]
+                    \item The system shows the front of the card.
+                    \item The user flips the card
+                    \item The user self-scores their performance.
+                    \item The system adds the appropriate amount of time to the time until the card should be next seen.
+                    \item The system puts the card into the 'today' list of cards, or the 'later' list.
+                \end{enumerate}
+            \end{enumerate}
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the study button.
+            \item The user must flip the flashcards.
+            \item The user must self-score their knowledge of their memory.
+        \end{itemize}
+
+    \subsection{System Requirements}
+
+\section{Sort}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Sort menu item. \\
+            \makebox[1.7cm][l]{Response:} The system brings up the sort GUI. \\
+            \smallspace
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Sort button in the sort GUI. \\
+            \makebox[1.7cm][l]{Response:} The system sorts the flashcards based on the user's options. \\
+        \end{flushleft}
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the Sort menu item.
+            \item The user must enter whether to sort the fronts or backs of the cards.
+            \item The user must enter whether to sort the cards in lexicographical or reverse lexicographical order.
+            \item The user must click the Sort button.
+        \end{itemize} 
+
+    \subsection{System Requirements}
+        There are so system requirements. 
+
+\section{Guide}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Guide menu item. \\
+            \makebox[1.7cm][l]{Response:} The system brings up the guide pop-up window. \\
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the Guide menu item.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        There are no system requirements.
+
+\section{About}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the About menu item. \\
+            \makebox[1.7cm][l]{Response:} The system brings up the about pop-up window. \\
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the About menu item.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        There are no system requirements.
+
+\section{Quit}
+    \subsection{Stimulus/Response Sequence}
+        \begin{flushleft}
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Quit menu item. \\
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the window exit button. \\
+            \makebox[1.7cm][l]{Response:} \\
+            \begin{enumerate}[1.]
+                \item The system saves the flashcards to the database.
+                \item The system closes the GUI.
+                \item The system closes.
+            \end{enumerate}
+        \end{flushleft}
+
+    \subsection{User Requirements}
+        \begin{itemize}
+            \item The user must click the Quit menu item or the window exit button.
+        \end{itemize}
+
+    \subsection{System Requirements}
+        There are no system requirements.
+
+
+\chapter{Milestones}
+    \begin{enumerate}[1.]
+        \item Create a detailed Software Requirements Specification.
+        \item Create class and sequence diagrams detailing the project.
+        \item Create a minimum viable product.
+        \item Add remaining non-functional requirements.
+        \item Perform unit and system testing.
+        \item Create a user manual.
+        \item Deploy the program.
+    \end{enumerate}
+
+
+\chapter{Other Requirements}
 
 \section{Performance Requirements}
 $<$If there are performance requirements for the product under various 
