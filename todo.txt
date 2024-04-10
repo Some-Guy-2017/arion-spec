@@ -1,0 +1,25 @@
+see /home/joe/Documents/documentation/arion-spec for arion spec documentation
+
+[ ] Complete Appendices section:
+    [x] Glossary (Appendix A: Glossary)
+    [ ] Project proposal (Appendix B: Project Proposal)
+        [ ] Find an example online
+        [ ] Problem Statement
+        [ ] Objectives
+        [ ] Methodology
+        [ ] History of Product (?)
+    [x] Insert use case diagram (Appendix C: Analysis Models)
+[ ] Complete use case diagrams:
+    [ ] Load
+    [ ] Save
+    [ ] Browse
+    [ ] Delete
+    [ ] Edit
+    [ ] Add
+    [ ] Study
+    [ ] Sort
+    [ ] Guide
+    [ ] About
+    [ ] Quit
+[ ] Figure out how to insert the use case reports into the document
+[ ] Re-read the SRS

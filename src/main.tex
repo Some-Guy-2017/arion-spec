@@ -18,14 +18,18 @@
 \newcommand{\bigspace}{\vspace{1.9cm}}
 \newcommand{\smallspace}{\vspace{0.5cm}}
 
+\newcommand{\image}[2][1]{
+    \begin{center}
+        \includegraphics[scale=#1]{#2}
+    \end{center}
+}
+
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage[shortlabels]{enumitem}
 
-%\usepackage{listings}
-%\usepackage{underscore}
-%\usepackage[utf8]{inputenc}
-%\usepackage[english]{babel}
+\usepackage{graphicx}
+\graphicspath{ {../img/} }
 
 \usepackage{hyperref}
 \hypersetup{
@@ -106,9 +110,8 @@ Arion allows users to build their memory over time, allowing them to remember co
 \chapter{Overall Description}
 
 \section{Product Perspective}
-Arion was built to be small and simple. \href{https://apps.ankiweb.net/}{Anki} is one of the most popular desktop
-spaced repetition systems, but infamously has an unintuitive design.
-Arion removes unnecessary features and has a simple GUI, improving user experience and making modification by users
+Arion was built to be small and simple.
+Arion has no unnecessary features and a simple GUI, improving user experience and making modification by users
 with programming experience easy.
 Arion is an open source, standalone application made for a senior year high school final project.
 It runs on Windows, macOS, and Linux.
@@ -219,7 +222,7 @@ Arion is written in Java, so requires a JVM version of at least 17 to run.
 Since Arion runs in a JVM, all hardware must be supported by Java.
 
 \section{Software Interfaces}
-Arion is written in Java, so requires a JVM version 17 or higher to be installed on the system.
+Arion is written in Java, so requires a JVM version 18 or higher to be installed on the system.
 
 \section{Communications Interfaces}
 Arion is a standalone program, so has no external communications with other services.
@@ -469,67 +472,76 @@ Arion is a standalone program, so has no external communications with other serv
     \end{enumerate}
 
 
+\chapter{Key Resource Requirements}
+
+\section{Major tasks}
+Since this is being developed by a single developer, all tasks are assigned to Joseph Hare.
+\begin{itemize}
+    \item Requirement documentation.
+    \item Class and sequence diagram creation.
+    \item GUI implementation.
+    \item Back end implementation.
+    \item Testing.
+    \item User manual creation.
+\end{itemize}
+
+
 \chapter{Other Requirements}
 
 \section{Performance Requirements}
-$<$If there are performance requirements for the product under various 
-circumstances, state them here and explain their rationale, to help the 
-developers understand the intent and make suitable design choices. Specify the 
-timing relationships for real time systems. Make such requirements as specific 
-as possible. You may need to state performance requirements for individual 
-functional requirements or features.$>$
-
-\section{Safety Requirements}
-$<$Specify those requirements that are concerned with possible loss, damage, or 
-harm that could result from the use of the product. Define any safeguards or 
-actions that must be taken, as well as actions that must be prevented. Refer to 
-any external policies or regulations that state safety issues that affect the 
-product’s design or use. Define any safety certifications that must be 
-satisfied.$>$
-
-\section{Security Requirements}
-$<$Specify any requirements regarding security or privacy issues surrounding use 
-of the product or protection of the data used or created by the product. Define 
-any user identity authentication requirements. Refer to any external policies or 
-regulations containing security issues that affect the product. Define any 
-security or privacy certifications that must be satisfied.$>$
+\begin{itemize}
+    \item GUIs shall load within 10ms, otherwise the program will feel unresponsive to users.
+    \item Sorting shall be performed within 20ms for 1,000 flashcards.
+    \item Adding, editing, and deleting flashcards shall take no more than 5ms.
+    \item Displaying flashcards shall take no more than 5ms.
+        Since this process occurs frequently, a high delay would irritate users.
+\end{itemize}
 
 \section{Software Quality Attributes}
-$<$Specify any additional quality characteristics for the product that will be 
-important to either the customers or the developers. Some to consider are: 
-adaptability, availability, correctness, flexibility, interoperability, 
-maintainability, portability, reliability, reusability, robustness, testability, 
-and usability. Write these to be specific, quantitative, and verifiable when 
-possible. At the least, clarify the relative preferences for various attributes, 
-such as ease of use over ease of learning.$>$
-
-\section{Business Rules}
-$<$List any operating principles about the product, such as which individuals or 
-roles can perform which functions under specific circumstances. These are not 
-functional requirements in themselves, but they may imply certain functional 
-requirements to enforce the rules.$>$
+\begin{itemize}
+    \item The program shall be modular and written in an object-oriented programming language,
+        to allow for future updates and ease of creation.
+    \item The program shall be programmed in a portable programming language,
+        such as Java, to allow for future porting to other systems.
+    \item The program shall be reliable and robust, so no unexpected inputs will
+        make it fail.
+\end{itemize}
 
 
-\chapter{Other Requirements}
-$<$Define any other requirements not covered elsewhere in the SRS. This might 
-include database requirements, internationalization requirements, legal 
-requirements, reuse objectives for the project, and so on. Add any new sections 
-that are pertinent to the project.$>$
+\chapter{Appendices}
 
-\section{Appendix A: Glossary}
-%see https://en.wikibooks.org/wiki/LaTeX/Glossary
-$<$Define all the terms necessary to properly interpret the SRS, including 
-acronyms and abbreviations. You may wish to build a separate glossary that spans 
-multiple projects or the entire organization, and just include terms specific to 
-a single project in each SRS.$>$
+\section{Glossary}
+\begin{itemize}
+    \item Flashcard: A card containing a prompt on the front and information on the back,
+        which is used to memorize information.
+    \item Spaced repetition: a way to memorize information. New and difficult information
+        is show more frequently than easy and older information, mimicking the pattern
+        by which people forget information to optimize learning rate.
+    \item Java: A multi-platform object-oriented programming language.
+    \item Multi-platform: Able to run on many platforms without needing to alter the code.
+    \item Object-oriented: a style of programming where data and code are organized into
+        separate "objects."
+    \item Graphical User Interface (GUI): A visible digital interface where users can 
+        interact with the program using buttons, icons, etc.
+    \item Java Abstract Window Toolkit (AWT): Java's first graphics toolkit, allowing developers
+        to provide a GUI for their programs.
+    \item Java SWING: A newer graphical toolkit for Java that can emulate the look of multiple platforms.
+    \item Virtual Machine (VM): A computer implemented in software, as opposed to hardware.
+    \item Java Virtual Machine (JVM): Java's VM used to run compiled Java programs.
+\end{itemize}
 
-\section{Appendix B: Analysis Models}
+%see https://en.wikibooks.org/wiki/LaTeX/Glossary <- this seems unnecessary
+
+\section{Project Proposal}
+
+\subsection{Problem Statement}
+\subsection{Objectives}
+\subsection{Methodology}
+\subsection{History of Product}
+
+\section{Analysis Models}
+\image[0.4]{arion-use-case-diagram}
 $<$Optionally, include any pertinent analysis models, such as data flow 
 diagrams, class diagrams, state-transition diagrams, or entity-relationship 
 diagrams.$>$
-
-\section{Appendix C: To Be Determined List}
-$<$Collect a numbered list of the TBD (to be determined) references that remain 
-in the SRS so they can be tracked to closure.$>$
-
 \end{document}
