@@ -27,6 +27,7 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage[shortlabels]{enumitem}
+\usepackage[super]{nth}
 
 \usepackage{graphicx}
 \graphicspath{ {../img/} }
@@ -104,6 +105,10 @@ Arion allows users to build their memory over time, allowing them to remember co
     \url{https://github.com/Some-Guy-2017/arion} \\
     LaTeX Software Requirements Specification template: \\
     \url{https://github.com/jpeisenbarth/SRS-Tex} \\
+    Spaced Repetition History: \\
+    \url{https://files.eric.ed.gov/fulltext/EJ1143520.pdf} \\
+    Wikipedia page for the Leitner system: \\
+    \url{https://en.wikipedia.org/wiki/Leitner_system} \\
 \end{flushleft}
 
 
@@ -467,7 +472,6 @@ Arion is a standalone program, so has no external communications with other serv
         \item Create a minimum viable product.
         \item Add remaining non-functional requirements.
         \item Perform unit and system testing.
-        \item Create a user manual.
         \item Deploy the program.
     \end{enumerate}
 
@@ -530,18 +534,421 @@ Since this is being developed by a single developer, all tasks are assigned to J
     \item Java Virtual Machine (JVM): Java's VM used to run compiled Java programs.
 \end{itemize}
 
-%see https://en.wikibooks.org/wiki/LaTeX/Glossary <- this seems unnecessary
+\section{Analysis Models}
+\image[0.4]{arion-use-case-diagram}
 
 \section{Project Proposal}
 
 \subsection{Problem Statement}
-\subsection{Objectives}
-\subsection{Methodology}
-\subsection{History of Product}
+Traditional study methods often result in forgetting information over long periods of time.
+Memorization over years, or even a lifetime, is crucial for
+speaking a second language, entering a new profession, and many more scenarios.
+A standardized approach to learning information is thus needed.
 
-\section{Analysis Models}
-\image[0.4]{arion-use-case-diagram}
-$<$Optionally, include any pertinent analysis models, such as data flow 
-diagrams, class diagrams, state-transition diagrams, or entity-relationship 
-diagrams.$>$
+\subsection{Objectives}
+Arion primarily aims to provide a spaced-repetition system to allow learners to 
+systemically built their knowledge over long periods of time. \\
+Arion's objectives are to:
+\begin{itemize}
+    \item Provide a friendly user interface for managing flashcards.
+    \item Be open-source to allow free usage of the program.
+    \item Work quickly and robustly for excellent user experience.
+    \item Allow future cross-platform availability.
+    \item Written in a modular way for future expansions.
+    \item Written clearly using DRY principals for easy development and updates.
+\end{itemize}
+
+\subsection{Methodology}
+The development of Arion will following process:
+\begin{enumerate}[1.]
+    \item Create a detailed specification for the development process to follow.
+    \item Detail the specifics of the program using class and sequence diagrams.
+    \item Implement the back-end of Arion (card creation, deletion, editing, etc.).
+    \item Implement the front-end of Arion (the user interface, buttons, labels, etc.).
+    \item Rigorously test the product using both unit and system tests.
+    \item Create a user manual.
+    \item Deploy the program.
+    \item Iteratively improving the program with new features.
+\end{enumerate}
+
+\subsection{History of Product}
+Spaced repetition started in the \nth{19} century, when in 1885 Hermann Ebbinghaus
+hypothesized that the rate at which people forget information increases exponentially
+over time. Further study yielded the following two principals:
+\begin{enumerate}[1.]
+    \item Remembering the information leads to better memory than being shown the item.
+    \item Remembering the information after a delay increases memory retention compared
+        to recall soon after learning the item.
+\end{enumerate}
+The optimal strategy is to have learners review the information just before it will
+be forgotten. Several estimations of when people will forget knowledge have been made;
+Arion uses the Leitner system to temporally space flashcards.
+
+
+\chapter*{Arion - Load}
+
+\section*{Description}
+Load loads the flashcards from the database into the program.
+
+\section*{Actors}
+\begin{itemize}
+    \item User
+    \item Database
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item There is a database file for Arion to read from.
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item The user clicks the Load button.
+    \item Ask the user to confirm overwriting the previous flashcards.
+    \item Open the database file for reading.
+    \item Parse the file for flashcards.
+    \item Validate each flashcard.
+    \item Write each flashcard into a local array.
+    \item Close the file.
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{No File}
+If in step 3 there is no file to read:
+\begin{enumerate}
+    \item Print an error message to the user.
+    \item End the use case with a failure condition.
+\end{enumerate}
+
+\subsection*{Invalid Flashcard}
+If in step 5 a flashcard is incorrect:
+\begin{enumerate}
+    \item Print a message stating that the file is formatted incorrectly.
+    \item End the use case with a failure condition.
+\end{enumerate}
+
+\section*{Key Scenario}
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Save}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Browse}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Delete}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Edit}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Add}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Study}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Sort}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Guide}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - About}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
+\chapter*{Arion - Quit}
+
+\section*{Description}
+
+\section*{Actors}
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+
+\section*{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section*{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item 
+\end{enumerate}
+
+\section*{Alternative Flow of Event}
+\subsection*{ALTFLOW}
+If in step n ...:
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\section*{Key Scenario}
+
+\section*{Post-Conditions}
+
+
 \end{document}

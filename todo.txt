@@ -1,13 +1,13 @@
 see /home/joe/Documents/documentation/arion-spec for arion spec documentation
 
-[ ] Complete Appendices section:
+[x] Complete Appendices section:
     [x] Glossary (Appendix A: Glossary)
-    [ ] Project proposal (Appendix B: Project Proposal)
-        [ ] Find an example online
-        [ ] Problem Statement
-        [ ] Objectives
-        [ ] Methodology
-        [ ] History of Product (?)
+    [x] Project proposal (Appendix B: Project Proposal)
+        [-] Find an example online
+        [x] Problem Statement
+        [x] Objectives
+        [x] Methodology
+        [x] History of Product (?)
     [x] Insert use case diagram (Appendix C: Analysis Models)
 [ ] Complete use case diagrams:
     [ ] Load
