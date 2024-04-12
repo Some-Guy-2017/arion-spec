@@ -146,11 +146,11 @@ View:
 
 Help:
 \begin{itemize}
-    \item Guide: Display a user guide explaining how to use the program.
-    \item About: Summarizes the program's functionality.
+    \item Guide: Display a user guide explaining how to use Arion.
+    \item About: Summarizes Arion's functionality.
 \end{itemize}
 
-Quit: Quits the program.
+Quit: Quits Arion.
 
 \section{User Classes and Characteristics}
 \begin{itemize}
@@ -196,7 +196,7 @@ Arion is written in Java, so requires a JVM version of at least 17 to run.
 \section{User Interfaces}
 \begin{itemize}
     \item
-        Main Screen: The default screen that shows when the user first starts the program.
+        Main Screen: The default screen that shows when the user first starts Arion.
         It includes a study button that allows the user to enter study mode,
         and an add button that enters add mode.
     \item 
@@ -213,7 +213,7 @@ Arion is written in Java, so requires a JVM version of at least 17 to run.
         Also has a button for confirming the sort, and a back button to return to the main screen.
     \item 
         Guide: A pop-up window with a number of screens, each detailing the usage of a
-        different part of the program. Has an exit button to return to the main program.
+        different part of Arion. Has an exit button to return to the main program.
     \item 
         About: A pop-up window detailing the Arion program, including its purpose and development.
         Has an exit button to return to the main program.
@@ -236,98 +236,81 @@ Arion is a standalone program, so has no external communications with other serv
 \chapter{System Features}
 
 \section{Load}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} User clicks the Load menu item. \\
-            \makebox[1.7cm][l]{Stimulus:} User opens the program. \\
-            \makebox[1.7cm][l]{Response:} \\
-            \begin{enumerate}[1.]
-                \item Ask the user to confirm overwriting the previous flashcards.
-                \item Open the database file for reading.
-                \item Parse the file for flashcards.
-                \item Validate each flashcard.
-                \item Write each flashcard into the local array.
-                \item Close the file.
-            \end{enumerate}
+            \makebox[1.7cm][l]{Stimulus:} User opens Arion. \\
+            \makebox[1.7cm][l]{Response:} The system loads the flashcards from the database file. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must open the program or click the Load menu item.
+            \item The user must open Arion or click the Load menu item.
             \item The user must confirm overwriting their previous flashcards.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         \begin{itemize}
             \item The system must have permission to read from the database file.
             \item The system must have enough memory for the flashcards.
         \end{itemize}
 
 \section{Save}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} User clicks the Save menu item. \\
-            \makebox[1.7cm][l]{Stimulus:} User closes the program. \\
-            \makebox[1.7cm][l]{Response:} \\
-            \begin{enumerate}[1.]
-                \item Ask the user to confirm overwriting the flashcards stored in the database file.
-                \item Open the database file for writing.
-                \item Write each flashcard to the file.
-                \item Close the file.
-            \end{enumerate}
+            \makebox[1.7cm][l]{Stimulus:} User closes Arion. \\
+            \makebox[1.7cm][l]{Response:} Save the program flashcards to the database file.
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must click the Save menu item or close the program.
+            \item The user must click the Save menu item or close Arion.
             \item The user must confirm overwriting their previously stored flashcards.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         \begin{itemize}
             \item The system must have permission to write to the database file.
         \end{itemize}
 
 \section{Browse}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Browse menu item. \\
             \makebox[1.7cm][l]{Response:} The system brings up the Browse screen. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the Browse menu item.
         \end{itemize}
 
-    \subsection{System Requirements}
-        There are no system requirements.
+    \subsection*{System Requirements}
+        \begin{itemize}
+            \item There must be flashcards to display.
+        \end{itemize}
 
 \section{Delete}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the delete button next to the flashcard entry in the browse screen table. \\
-            \makebox[1.7cm][l]{Response:} \\
-            \begin{enumerate}[1.]
-                \item Ask the user to confirm their selection.
-                \item Delete the selected flashcard from the list.
-                \item Update the displayed table.
-            \end{enumerate}
+            \makebox[1.7cm][l]{Response:} Delete the selected flashcard. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the delete button in the Browse GUI.
             \item The user must confirm their selection.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         \begin{itemize}
             \item The system must be in browse mode.
         \end{itemize}
 
 \section{Edit}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user edits a field in the flashcard table. \\
             \makebox[1.7cm][l]{Response:} The system stores the edited information. \\
@@ -335,18 +318,18 @@ Arion is a standalone program, so has no external communications with other serv
             \makebox[1.7cm][l]{Stimulus:} The user presses the Update button next to the flashcard in the browse screen table. \\
             \makebox[1.7cm][l]{Response:} The system writes the edited information to the internally stored list of flashcards. \\
         \end{flushleft}
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the update button to update the information.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         \begin{itemize}
             \item The system must be in browse mode.
         \end{itemize}
 
 \section{Add}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Add menu item. \\
             \makebox[1.7cm][l]{Response:} The system brings up the add screen. \\
@@ -355,46 +338,35 @@ Arion is a standalone program, so has no external communications with other serv
             \makebox[1.7cm][l]{Response:} The system adds the new contact to the contact list. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must enter the new information for the contact.
             \item The user must click the Add button to confirm adding the new contact.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         \begin{itemize}
             \item The system must have enough memory for the new flashcard.
         \end{itemize}
 
 \section{Study}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the study button  \\
-            \makebox[1.7cm][l]{Response:} \\
-            \begin{enumerate}[1.]
-                \item The system brings up the study GUI.
-                \item For each flashcard in the list of cards to study today:
-                \begin{enumerate}[a.]
-                    \item The system shows the front of the card.
-                    \item The user flips the card
-                    \item The user self-scores their performance.
-                    \item The system adds the appropriate amount of time to the time until the card should be next seen.
-                    \item The system puts the card into the 'today' list of cards, or the 'later' list.
-                \end{enumerate}
-            \end{enumerate}
+            \makebox[1.7cm][l]{Response:} Arion enters study mode. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the study button.
             \item The user must flip the flashcards.
             \item The user must self-score their knowledge of their memory.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
 
 \section{Sort}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Sort menu item. \\
             \makebox[1.7cm][l]{Response:} The system brings up the sort GUI. \\
@@ -402,7 +374,7 @@ Arion is a standalone program, so has no external communications with other serv
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Sort button in the sort GUI. \\
             \makebox[1.7cm][l]{Response:} The system sorts the flashcards based on the user's options. \\
         \end{flushleft}
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the Sort menu item.
             \item The user must enter whether to sort the fronts or backs of the cards.
@@ -410,58 +382,53 @@ Arion is a standalone program, so has no external communications with other serv
             \item The user must click the Sort button.
         \end{itemize} 
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         There are so system requirements. 
 
 \section{Guide}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Guide menu item. \\
             \makebox[1.7cm][l]{Response:} The system brings up the guide pop-up window. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the Guide menu item.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         There are no system requirements.
 
 \section{About}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the About menu item. \\
             \makebox[1.7cm][l]{Response:} The system brings up the about pop-up window. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the About menu item.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         There are no system requirements.
 
 \section{Quit}
-    \subsection{Stimulus/Response Sequence}
+    \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Quit menu item. \\
             \makebox[1.7cm][l]{Stimulus:} The user clicks the window exit button. \\
-            \makebox[1.7cm][l]{Response:} \\
-            \begin{enumerate}[1.]
-                \item The system saves the flashcards to the database.
-                \item The system closes the GUI.
-                \item The system closes.
-            \end{enumerate}
+            \makebox[1.7cm][l]{Response:} Arion quits. \\
         \end{flushleft}
 
-    \subsection{User Requirements}
+    \subsection*{User Requirements}
         \begin{itemize}
             \item The user must click the Quit menu item or the window exit button.
         \end{itemize}
 
-    \subsection{System Requirements}
+    \subsection*{System Requirements}
         There are no system requirements.
 
 
@@ -472,7 +439,7 @@ Arion is a standalone program, so has no external communications with other serv
         \item Create a minimum viable product.
         \item Add remaining non-functional requirements.
         \item Perform unit and system testing.
-        \item Deploy the program.
+        \item Deploy Arion.
     \end{enumerate}
 
 
@@ -494,7 +461,7 @@ Since this is being developed by a single developer, all tasks are assigned to J
 
 \section{Performance Requirements}
 \begin{itemize}
-    \item GUIs shall load within 10ms, otherwise the program will feel unresponsive to users.
+    \item GUIs shall load within 10ms, otherwise Arion will feel unresponsive to users.
     \item Sorting shall be performed within 20ms for 1,000 flashcards.
     \item Adding, editing, and deleting flashcards shall take no more than 5ms.
     \item Displaying flashcards shall take no more than 5ms.
@@ -503,11 +470,11 @@ Since this is being developed by a single developer, all tasks are assigned to J
 
 \section{Software Quality Attributes}
 \begin{itemize}
-    \item The program shall be modular and written in an object-oriented programming language,
+    \item Arion shall be modular and written in an object-oriented programming language,
         to allow for future updates and ease of creation.
-    \item The program shall be programmed in a portable programming language,
+    \item Arion shall be programmed in a portable programming language,
         such as Java, to allow for future porting to other systems.
-    \item The program shall be reliable and robust, so no unexpected inputs will
+    \item Arion shall be reliable and robust, so no unexpected inputs will
         make it fail.
 \end{itemize}
 
@@ -551,7 +518,7 @@ systemically built their knowledge over long periods of time. \\
 Arion's objectives are to:
 \begin{itemize}
     \item Provide a friendly user interface for managing flashcards.
-    \item Be open-source to allow free usage of the program.
+    \item Be open-source to allow free usage of Arion.
     \item Work quickly and robustly for excellent user experience.
     \item Allow future cross-platform availability.
     \item Written in a modular way for future expansions.
@@ -562,13 +529,13 @@ Arion's objectives are to:
 The development of Arion will following process:
 \begin{enumerate}[1.]
     \item Create a detailed specification for the development process to follow.
-    \item Detail the specifics of the program using class and sequence diagrams.
+    \item Detail the specifics of Arion using class and sequence diagrams.
     \item Implement the back-end of Arion (card creation, deletion, editing, etc.).
     \item Implement the front-end of Arion (the user interface, buttons, labels, etc.).
     \item Rigorously test the product using both unit and system tests.
     \item Create a user manual.
-    \item Deploy the program.
-    \item Iteratively improving the program with new features.
+    \item Deploy Arion.
+    \item Iteratively improving Arion with new features.
 \end{enumerate}
 
 \subsection{History of Product}
@@ -584,24 +551,26 @@ The optimal strategy is to have learners review the information just before it w
 be forgotten. Several estimations of when people will forget knowledge have been made;
 Arion uses the Leitner system to temporally space flashcards.
 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}} % hide chapters from ToC
+\setcounter{chapter}{0} % reset numbering
 
-\chapter*{Arion - Load}
+\chapter{Arion - Load}
 
-\section*{Description}
+\section{Description}
 Load loads the flashcards from the database into the program.
 
-\section*{Actors}
+\section{Actors}
 \begin{itemize}
     \item User
     \item Database
 \end{itemize}
 
-\section*{Preconditions}
+\section{Preconditions}
 \begin{itemize}
     \item There is a database file for Arion to read from.
 \end{itemize}
 
-\section*{Expected Flow of Event}
+\section{Expected Flow of Event}
 \begin{enumerate}[1.]
     \item The user clicks the Load button.
     \item Ask the user to confirm overwriting the previous flashcards.
@@ -612,343 +581,433 @@ Load loads the flashcards from the database into the program.
     \item Close the file.
 \end{enumerate}
 
-\section*{Alternative Flow of Event}
-\subsection*{No File}
-If in step 3 there is no file to read:
-\begin{enumerate}
-    \item Print an error message to the user.
-    \item End the use case with a failure condition.
+\section{Alternative Flow of Event}
+
+    \subsection{No File}
+    If in step 3 there is no file to read:
+    \begin{enumerate}
+        \item Print an error message to the user.
+        \item End the use case with a failure condition.
+    \end{enumerate}
+
+    \subsection{Invalid Flashcard}
+    If in step 5 a flashcard is incorrect:
+    \begin{enumerate}
+        \item Print a message stating that the file is formatted incorrectly.
+        \item End the use case with a failure condition.
+    \end{enumerate}
+
+\section{Key Scenarios}
+    \subsection{Load Flashcards}
+    The flashcards are loaded from the database file.
+
+    \subsection{Failure Loading}
+    Arion exits without loading.
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    The flashcards were loaded into memory.
+
+    \subsection{Failure Condition}
+    A failure message was printed.
+
+\chapter{Arion - Save}
+
+\section{Description}
+Save saves the flashcards loaded in memory to the database file.
+
+\section{Actors}
+\begin{itemize}
+    \item User
+    \item Database
+\end{itemize}
+
+\section{Preconditions}
+\begin{itemize}
+    \item The system must have permission to write to the database file.
+\end{itemize}
+
+\section{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item Ask the user to confirm overwriting the flashcards stored in the database file.
+    \item Open the database file for writing.
+    \item Write each flashcard to the file.
+    \item Close the file.
 \end{enumerate}
 
-\subsection*{Invalid Flashcard}
-If in step 5 a flashcard is incorrect:
-\begin{enumerate}
-    \item Print a message stating that the file is formatted incorrectly.
-    \item End the use case with a failure condition.
+\section{Alternative Flow of Event}
+
+    \subsection{User Declines}
+    If in step 1 the user declines to overwrite the flashcards,
+    end the use case with a failure condition.
+
+    \subsection{File Failure}
+    If in step 2 the file cannot be opened for writing:
+    \begin{enumerate}[1.]
+        \item Print an error message.
+        \item End the use case with a failure condition.
+    \end{enumerate}
+
+\section{Key Scenarios}
+    \subsection{Save Flashcards}
+    The flashcards are saved to the database file.
+    
+    \subsection{User Declines}
+    The user declines to overwrite the existing flashcards.
+
+    \subsection{Permission Error}
+    Arion does not have permission to write to the database file.
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    The flashcards were saved to the database file.
+    
+    \subsection{Failure Condition}
+    The database file is unchanged, and an error message was printed.
+
+\chapter{Arion - Browse}
+
+\section{Description}
+Browse displays the flashcards in a table for the user to edit or delete.
+
+\section{Actors}
+\begin{itemize}
+    \item User
+\end{itemize}
+
+\section{Preconditions}
+\begin{itemize}
+    \item There must be flashcards to display.
+\end{itemize}
+
+\section{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item The user clicks the Browse button.
+    \item Check that there are flashcards to display.
+    \item Construct a GUI table.
+    \item Fill the table with the flashcard fields.
+    \item Display the table.
 \end{enumerate}
 
-\section*{Key Scenario}
-\section*{Post-Conditions}
+\section{Alternative Flow of Event}
+
+    \subsection{No Flashcards}
+    If in step 2 there are no flashcards:
+    \begin{enumerate}
+        \item Display to the user that there are no flashcards.
+        \item End the use case with a failure condition.
+    \end{enumerate}
+
+\section{Key Scenarios}
+    \subsection{Display the Flashcards}
+    The flashcards are displayed to the user in the form of a table.
+
+    \subsection{Display No Flashcard Message}
+    In the circumstance that there are no flashcards to display, Arion will
+    display this to the user.
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    The flashcards were displayed.
+    
+    \subsection{Failure Condition}
+    The program displayed that there are no flashcards to display.
 
 
-\chapter*{Arion - Save}
+\chapter{Arion - Delete}
 
-\section*{Description}
+\section{Description}
+Delete removes a flashcard from the list stored in memory.
 
-\section*{Actors}
+\section{Actors}
+\begin{itemize}
+    \item User
+\end{itemize}
+
+\section{Preconditions}
+\begin{itemize}
+    \item Arion is in browse mode.
+\end{itemize}
+
+\section{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item Ask the user to confirm their selection.
+    \item Delete the selected flashcard from the list.
+    \item Update the displayed table.
+\end{enumerate}
+
+\section{Alternative Flow of Event}
+
+    \subsection{User Declines}
+    If in step 1 the user declines the selection,
+    end the use case with a success condition.
+
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
+
+
+\chapter{Arion - Edit}
+
+\section{Description}
+
+\section{Actors}
 \begin{itemize}
     \item 
     \item 
 \end{itemize}
 
-\section*{Preconditions}
+\section{Preconditions}
 \begin{itemize}
     \item 
 \end{itemize}
 
-\section*{Expected Flow of Event}
+\section{Expected Flow of Event}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
+\section{Alternative Flow of Event}
 
-\section*{Key Scenario}
+    \subsection{ALTFLOW}
+    If in step n ...:
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
 
-\section*{Post-Conditions}
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
 
 
-\chapter*{Arion - Browse}
+\chapter{Arion - Add}
 
-\section*{Description}
+\section{Description}
 
-\section*{Actors}
+\section{Actors}
 \begin{itemize}
     \item 
     \item 
 \end{itemize}
 
-\section*{Preconditions}
+\section{Preconditions}
 \begin{itemize}
     \item 
 \end{itemize}
 
-\section*{Expected Flow of Event}
+\section{Expected Flow of Event}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
+\section{Alternative Flow of Event}
+
+    \subsection{ALTFLOW}
+    If in step n ...:
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
+
+
+\chapter{Arion - Study}
+
+\section{Description}
+
+\section{Actors}
+\begin{itemize}
     \item 
+    \item 
+\end{itemize}
+
+\section{Preconditions}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\section{Expected Flow of Event}
+\begin{enumerate}[1.]
+    \item The system brings up the study GUI.
+    \item For each flashcard in the list of cards to study today:
+    \begin{enumerate}[a.]
+        \item The system shows the front of the card.
+        \item The user flips the card
+        \item The user self-scores their performance.
+        \item The system adds the appropriate amount of time to the time until the card should be next seen.
+        \item The system puts the card into the 'today' list of cards, or the 'later' list.
+    \end{enumerate}
 \end{enumerate}
 
-\section*{Key Scenario}
+\section{Alternative Flow of Event}
+There are no alternative flows of events.
 
-\section*{Post-Conditions}
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
 
 
-\chapter*{Arion - Delete}
+\chapter{Arion - Sort}
 
-\section*{Description}
+\section{Description}
 
-\section*{Actors}
+\section{Actors}
 \begin{itemize}
     \item 
     \item 
 \end{itemize}
 
-\section*{Preconditions}
+\section{Preconditions}
 \begin{itemize}
     \item 
 \end{itemize}
 
-\section*{Expected Flow of Event}
+\section{Expected Flow of Event}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
+\section{Alternative Flow of Event}
 
-\section*{Key Scenario}
+    \subsection{ALTFLOW}
+    If in step n ...:
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
 
-\section*{Post-Conditions}
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
 
 
-\chapter*{Arion - Edit}
+\chapter{Arion - Guide}
 
-\section*{Description}
+\section{Description}
 
-\section*{Actors}
+\section{Actors}
 \begin{itemize}
     \item 
     \item 
 \end{itemize}
 
-\section*{Preconditions}
+\section{Preconditions}
 \begin{itemize}
     \item 
 \end{itemize}
 
-\section*{Expected Flow of Event}
+\section{Expected Flow of Event}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
+\section{Alternative Flow of Event}
 
-\section*{Key Scenario}
+    \subsection{ALTFLOW}
+    If in step n ...:
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
 
-\section*{Post-Conditions}
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
 
 
-\chapter*{Arion - Add}
+\chapter{Arion - About}
 
-\section*{Description}
+\section{Description}
 
-\section*{Actors}
+\section{Actors}
 \begin{itemize}
     \item 
     \item 
 \end{itemize}
 
-\section*{Preconditions}
+\section{Preconditions}
 \begin{itemize}
     \item 
 \end{itemize}
 
-\section*{Expected Flow of Event}
+\section{Expected Flow of Event}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
+\section{Alternative Flow of Event}
 
-\section*{Key Scenario}
+    \subsection{ALTFLOW}
+    If in step n ...:
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
 
-\section*{Post-Conditions}
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
+
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
 
 
-\chapter*{Arion - Study}
+\chapter{Arion - Quit}
 
-\section*{Description}
+\section{Description}
 
-\section*{Actors}
+\section{Actors}
 \begin{itemize}
     \item 
     \item 
 \end{itemize}
 
-\section*{Preconditions}
+\section{Preconditions}
 \begin{itemize}
     \item 
 \end{itemize}
 
-\section*{Expected Flow of Event}
-\begin{enumerate}[1.]
-    \item 
-\end{enumerate}
+\section{Expected Flow of Event}
+    \begin{enumerate}[1.]
+        \item The system saves the flashcards to the database.
+        \item The system closes the GUI.
+        \item The system closes.
+    \end{enumerate}
 
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
+\section{Alternative Flow of Event}
+    There are no alternative flows of events.
 
-\section*{Key Scenario}
+\section{Key Scenarios}
+    \subsection{KEYSCENARIO}
 
-\section*{Post-Conditions}
-
-
-\chapter*{Arion - Sort}
-
-\section*{Description}
-
-\section*{Actors}
-\begin{itemize}
-    \item 
-    \item 
-\end{itemize}
-
-\section*{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
-
-\section*{Expected Flow of Event}
-\begin{enumerate}[1.]
-    \item 
-\end{enumerate}
-
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
-
-\section*{Key Scenario}
-
-\section*{Post-Conditions}
-
-
-\chapter*{Arion - Guide}
-
-\section*{Description}
-
-\section*{Actors}
-\begin{itemize}
-    \item 
-    \item 
-\end{itemize}
-
-\section*{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
-
-\section*{Expected Flow of Event}
-\begin{enumerate}[1.]
-    \item 
-\end{enumerate}
-
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
-
-\section*{Key Scenario}
-
-\section*{Post-Conditions}
-
-
-\chapter*{Arion - About}
-
-\section*{Description}
-
-\section*{Actors}
-\begin{itemize}
-    \item 
-    \item 
-\end{itemize}
-
-\section*{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
-
-\section*{Expected Flow of Event}
-\begin{enumerate}[1.]
-    \item 
-\end{enumerate}
-
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
-
-\section*{Key Scenario}
-
-\section*{Post-Conditions}
-
-
-\chapter*{Arion - Quit}
-
-\section*{Description}
-
-\section*{Actors}
-\begin{itemize}
-    \item 
-    \item 
-\end{itemize}
-
-\section*{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
-
-\section*{Expected Flow of Event}
-\begin{enumerate}[1.]
-    \item 
-\end{enumerate}
-
-\section*{Alternative Flow of Event}
-\subsection*{ALTFLOW}
-If in step n ...:
-\begin{enumerate}
-    \item 
-\end{enumerate}
-
-\section*{Key Scenario}
-
-\section*{Post-Conditions}
+\section{Post-Conditions}
+    \subsection{Successful Condition}
+    
+    \subsection{Failure Condition}
 
 
 \end{document}

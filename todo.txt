@@ -1,18 +1,19 @@
 see /home/joe/Documents/documentation/arion-spec for arion spec documentation
 
-[x] Complete Appendices section:
-    [x] Glossary (Appendix A: Glossary)
-    [x] Project proposal (Appendix B: Project Proposal)
+[✓] Complete Appendices section:
+    [✓] Glossary (Appendix A: Glossary)
+    [✓] Project proposal (Appendix B: Project Proposal)
         [-] Find an example online
-        [x] Problem Statement
-        [x] Objectives
-        [x] Methodology
-        [x] History of Product (?)
-    [x] Insert use case diagram (Appendix C: Analysis Models)
-[ ] Complete use case diagrams:
-    [ ] Load
-    [ ] Save
-    [ ] Browse
+        [✓] Problem Statement
+        [✓] Objectives
+        [✓] Methodology
+        [✓] History of Product (?)
+    [✓] Insert use case diagram (Appendix C: Analysis Models)
+[✓] Simplify system feature stimulus/response section, moving the information into the use case reports
+[ ] Complete use case reports:
+    [✓] Load
+    [✓] Save
+    [✓] Browse
     [ ] Delete
     [ ] Edit
     [ ] Add
