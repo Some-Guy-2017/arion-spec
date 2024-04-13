@@ -10,17 +10,22 @@ see /home/joe/Documents/documentation/arion-spec for arion spec documentation
         [✓] History of Product (?)
     [✓] Insert use case diagram (Appendix C: Analysis Models)
 [✓] Simplify system feature stimulus/response section, moving the information into the use case reports
+[ ] Edit the load and save use case reports for complicated loading / saving of cards
+    (there might be multiple lists? Although it makes more sense to simply keep the next review date as a part of the card).
+[ ] Flesh-out how studying will work (cards will take *1.6 + 1 more time to review,
+    they have to be inserted in a sorted fashion with regards to next review, etc.)
 [ ] Complete use case reports:
-    [✓] Load
-    [✓] Save
+    [p] Load
+    [p] Save
     [✓] Browse
-    [ ] Delete
-    [ ] Edit
-    [ ] Add
+    [✓] Delete
+    [✓] Edit
+    [✓] Add
     [ ] Study
     [ ] Sort
     [ ] Guide
     [ ] About
     [ ] Quit
+[ ] Make sure the system requirements and use case report preconditions match (or make sense together).
 [ ] Figure out how to insert the use case reports into the document
 [ ] Re-read the SRS

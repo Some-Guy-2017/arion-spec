@@ -197,8 +197,8 @@ Arion is written in Java, so requires a JVM version of at least 17 to run.
 \begin{itemize}
     \item
         Main Screen: The default screen that shows when the user first starts Arion.
-        It includes a study button that allows the user to enter study mode,
-        and an add button that enters add mode.
+        It includes a Study button that allows the user to enter Study mode,
+        and an Add button that enters Add mode.
     \item 
         Browse: A table listing the flashcards, with editable fields and allowing users to 
         delete entries. Back button allows users to return to the main screen.
@@ -219,7 +219,7 @@ Arion is written in Java, so requires a JVM version of at least 17 to run.
         Has an exit button to return to the main program.
     \item 
         Add: A screen with two labeled editable text fields for users to enter the front and
-        back of a new card. Also has a confirm button to add the flashcard to the list, and
+        back of a new card. Also has a Confirm button to add the flashcard to the list, and
         a back button to return.
 \end{itemize}
 
@@ -549,7 +549,9 @@ over time. Further study yielded the following two principals:
 \end{enumerate}
 The optimal strategy is to have learners review the information just before it will
 be forgotten. Several estimations of when people will forget knowledge have been made;
-Arion uses the Leitner system to temporally space flashcards.
+Arion uses the Leitner system to temporally space flashcards, with the modification that
+correctly reviewed cards appear again after $\lfloor 1.6^x \rfloor$ days
+(where $x$ is the number of correct reviews).
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}} % hide chapters from ToC
 \setcounter{chapter}{0} % reset numbering
@@ -570,9 +572,9 @@ Load loads the flashcards from the database into the program.
     \item There is a database file for Arion to read from.
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the Load button.
+    \item The user clicks the Load menu item.
     \item Ask the user to confirm overwriting the previous flashcards.
     \item Open the database file for reading.
     \item Parse the file for flashcards.
@@ -581,7 +583,7 @@ Load loads the flashcards from the database into the program.
     \item Close the file.
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
     \subsection{No File}
     If in step 3 there is no file to read:
@@ -627,15 +629,16 @@ Save saves the flashcards loaded in memory to the database file.
     \item The system must have permission to write to the database file.
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
+    \item The user clicks the Save menu item.
     \item Ask the user to confirm overwriting the flashcards stored in the database file.
     \item Open the database file for writing.
     \item Write each flashcard to the file.
     \item Close the file.
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
     \subsection{User Declines}
     If in step 1 the user declines to overwrite the flashcards,
@@ -680,16 +683,16 @@ Browse displays the flashcards in a table for the user to edit or delete.
     \item There must be flashcards to display.
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the Browse button.
+    \item The user clicks the Browse menu item.
     \item Check that there are flashcards to display.
     \item Construct a GUI table.
     \item Fill the table with the flashcard fields.
     \item Display the table.
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
     \subsection{No Flashcards}
     If in step 2 there are no flashcards:
@@ -727,121 +730,141 @@ Delete removes a flashcard from the list stored in memory.
 \section{Preconditions}
 \begin{itemize}
     \item Arion is in browse mode.
+    \item There must be at least one flashcard.
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
+    \item The user clicks the Delete button next to a flashcard.
     \item Ask the user to confirm their selection.
     \item Delete the selected flashcard from the list.
     \item Update the displayed table.
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
     \subsection{User Declines}
     If in step 1 the user declines the selection,
-    end the use case with a success condition.
+    end the use case with a failure condition.
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{Flashcard Deleted}
+    The flashcard is deleted from the list.
+
+    \subsection{User Declines}
+    The user declines deleting the flashcard, so Arion keeps the card.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    The flashcard was deleted.
     
     \subsection{Failure Condition}
+    The flashcard was not deleted.
 
 
 \chapter{Arion - Edit}
 
 \section{Description}
+Edit modifies a flashcard's fields to the user's choice.
 
 \section{Actors}
 \begin{itemize}
-    \item 
-    \item 
+    \item User
 \end{itemize}
 
 \section{Preconditions}
 \begin{itemize}
-    \item 
+    \item Arion must be in browse mode.
+    \item There must be at least one flashcard.
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item 
+    \item The user enters the new fields for the flashcard.
+    \item The user clicks the Update button.
+    \item The flashcard's fields are updated with the new values.
 \end{enumerate}
 
-\section{Alternative Flow of Event}
-
-    \subsection{ALTFLOW}
-    If in step n ...:
-    \begin{enumerate}
-        \item 
-    \end{enumerate}
+\section{Alternative Flow of Events}
+    There are no alternative flows of events.
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{Flashcard is Updated}
+    The user clicks the update button, successfully editing the flashcard's fields.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    The flashcard's fields were replaced with the new values.
     
-    \subsection{Failure Condition}
-
 
 \chapter{Arion - Add}
 
 \section{Description}
+Add creates another flashcard with the user's desired fields, and adds it to
+the new card list.
 
 \section{Actors}
 \begin{itemize}
-    \item 
-    \item 
+    \item User
 \end{itemize}
 
 \section{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
+    There are no preconditions.
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item 
+    \item The user clicks the Add menu item or Add button.
+    \item The Add screen is brought up.
+    \item The user enters the flashcard fields.
+    \item The user clicks the Add button.
+    \item The flashcard is added to the new flashcard list.
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
-    \subsection{ALTFLOW}
-    If in step n ...:
-    \begin{enumerate}
-        \item 
-    \end{enumerate}
+    \subsection{Back Button}
+    If while the Add GUI is up the user clicks the back button,
+    Arion will return to the main screen.
+
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{User Enters Add GUI}
+    The user clicks on the Add menu item or Add button in the main screen,
+    taking the user to the Add screen.
+
+    \subsection{Flashcard is Added}
+    The user clicks on the Add button in the Add screen, adding the flashcard to
+    the new flashcard list.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    The flashcard was added to the new flashcard list.
     
     \subsection{Failure Condition}
-
+    The flashcard was not added to the new flashcard list.
 
 \chapter{Arion - Study}
+REMOVE LATER: The length of time until a card is reviewed again is $\lfloor 1.6^x \rfloor$.
 
 \section{Description}
+Study enters study mode. First, the user is presented with the front of a flashcard.
+After they have attempted a recall of the information on the back, they flip the card,
+then self-score their memory. This is repeated for all due flashcards.
 
 \section{Actors}
 \begin{itemize}
-    \item 
-    \item 
+    \item User
 \end{itemize}
 
 \section{Preconditions}
 \begin{itemize}
-    \item 
+    \item There are no preconditions.
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
+    \item The user clicks the study button in the main screen.
+    \item The system prepares a list of the flashcars
     \item The system brings up the study GUI.
     \item For each flashcard in the list of cards to study today:
     \begin{enumerate}[a.]
@@ -853,7 +876,7 @@ Delete removes a flashcard from the list stored in memory.
     \end{enumerate}
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 There are no alternative flows of events.
 
 \section{Key Scenarios}
@@ -880,12 +903,12 @@ There are no alternative flows of events.
     \item 
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
     \subsection{ALTFLOW}
     If in step n ...:
@@ -917,12 +940,12 @@ There are no alternative flows of events.
     \item 
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
     \subsection{ALTFLOW}
     If in step n ...:
@@ -954,12 +977,12 @@ There are no alternative flows of events.
     \item 
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
 \begin{enumerate}[1.]
     \item 
 \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
 
     \subsection{ALTFLOW}
     If in step n ...:
@@ -991,14 +1014,14 @@ There are no alternative flows of events.
     \item 
 \end{itemize}
 
-\section{Expected Flow of Event}
+\section{Expected Flow of Events}
     \begin{enumerate}[1.]
         \item The system saves the flashcards to the database.
         \item The system closes the GUI.
         \item The system closes.
     \end{enumerate}
 
-\section{Alternative Flow of Event}
+\section{Alternative Flow of Events}
     There are no alternative flows of events.
 
 \section{Key Scenarios}
