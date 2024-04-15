@@ -559,7 +559,8 @@ correctly reviewed cards appear again after $\lfloor 1.6^x \rfloor$ days
 \chapter{Arion - Load}
 
 \section{Description}
-Load loads the flashcards from the database into the program.
+Load parses the database file (always at the same place relative to the program executable) for flashcards,
+then loads these into memory.
 
 \section{Actors}
 \begin{itemize}
@@ -671,7 +672,8 @@ Save saves the flashcards loaded in memory to the database file.
 \chapter{Arion - Browse}
 
 \section{Description}
-Browse displays the flashcards in a table for the user to edit or delete.
+Browse displays the flashcards in a table with editable fields. This lets users
+view their flashcards, and edit / delete them.
 
 \section{Actors}
 \begin{itemize}
@@ -766,6 +768,7 @@ Delete removes a flashcard from the list stored in memory.
 
 \section{Description}
 Edit modifies a flashcard's fields to the user's choice.
+The only field users cannot edit is review date.
 
 \section{Actors}
 \begin{itemize}
@@ -801,7 +804,7 @@ Edit modifies a flashcard's fields to the user's choice.
 
 \section{Description}
 Add creates another flashcard with the user's desired fields, and adds it to
-the new card list.
+the new card list. The flashcard's date is set to the current day.
 
 \section{Actors}
 \begin{itemize}
@@ -817,7 +820,8 @@ the new card list.
     \item The Add screen is brought up.
     \item The user enters the flashcard fields.
     \item The user clicks the Add button.
-    \item The flashcard is added to the new flashcard list.
+    \item The flashcard date is set to the current date.
+    \item The flashcard is appended to the list.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
@@ -849,7 +853,10 @@ REMOVE LATER: The length of time until a card is reviewed again is $\lfloor 1.6^
 \section{Description}
 Study enters study mode. First, the user is presented with the front of a flashcard.
 After they have attempted a recall of the information on the back, they flip the card,
-then self-score their memory. This is repeated for all due flashcards.
+then self-score their memory. If they succeed, the amount of time until the user reviews the card
+again becomes $1.6$ times longer (e.g. if they reviewed in on January 1st, then correctly reviewed
+it 5 days later on January 6th, then they would again review it on January 14th, $5\cdot 1.6=8$ days later).
+If they fail, the flashcard is due the next day. This is repeated for all due flashcards.
 
 \section{Actors}
 \begin{itemize}
@@ -864,29 +871,47 @@ then self-score their memory. This is repeated for all due flashcards.
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
     \item The user clicks the study button in the main screen.
-    \item The system prepares a list of the flashcars
-    \item The system brings up the study GUI.
-    \item For each flashcard in the list of cards to study today:
+    \item The list of flashcards is sorted.
+    \item Bring up the study GUI.
+    \item For each flashcard in the list of cards:
     \begin{enumerate}[a.]
-        \item The system shows the front of the card.
+        \item Check that the card is due today.
+        \item If the card is not due it exits the loop.
+        \item Show the front of the card.
         \item The user flips the card
         \item The user self-scores their performance.
-        \item The system adds the appropriate amount of time to the time until the card should be next seen.
-        \item The system puts the card into the 'today' list of cards, or the 'later' list.
+        \item If the user recalls correctly:
+        \begin{enumerate}[i)]
+            \item Multiply the review interval by $1.6$.
+            \item Update the review date.
+            \item Move the card to the end of the list.
+        \end{enumerate}
+        \item Otherwise, if the user has recalled incorrectly:
+        \begin{enumerate}[i)]
+            \item Set the review interval to $1$.
+            \item Set the review date to today.
+            \item Move the card to the end of the cards due today.
+        \end{enumerate}
     \end{enumerate}
 \end{enumerate}
 
 \section{Alternative Flow of Events}
-There are no alternative flows of events.
+    \subsection{User Exits}
+    If the user exits early from studying, before all flashcards have been reviewed:
+    \begin{enumerate}[1.]
+        \item Return to the main screen.
+    \end{enumerate}
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{User is Studying}
+    The user is in study mode.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    All flashcards have been reviewed.
     
     \subsection{Failure Condition}
-
+    The user has exited early.
 
 \chapter{Arion - Sort}
 
