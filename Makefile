@@ -8,7 +8,7 @@ OUTPUT_FILES := $(TEX_FILE:${SRC_DIR}/%.tex=${BUILD_DIR}/%.pdf)
 
 LATEX := pdflatex
 LATEX_ARGS := -output-directory ${BUILD_DIR} -halt-on-error
-PDF_VIEWER := evince
+PDF_VIEWER := zathura
 
 
 all: ${BUILD_DIR} ${OUTPUT_FILES}

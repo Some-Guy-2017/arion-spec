@@ -24,8 +24,9 @@
     \end{center}
 }
 
+\renewcommand{\labelitemii}{$\circ$}
+
 \usepackage{xcolor}
-\usepackage{hyperref}
 \usepackage[shortlabels]{enumitem}
 \usepackage[super]{nth}
 
@@ -39,14 +40,19 @@
     pdfsubject={SRS for Arion Software}
     pdfkeywords={SRS, Software, Specification, Arion, Flashcards, Spaced Repetition},
     colorlinks=true,   % false: boxed links; true: colored links
-    linkcolor=black,   % color of internal links
+    linkcolor=purple,  % color of internal links
     citecolor=magenta, % color of links to bibliography
     filecolor=orange,  % color of file links
     urlcolor=cyan,     % color of external links
     linktoc=page       % only page is linked
 }
 
+\setlist{topsep=1em, itemsep=0.4em, parsep=0em}
+
 \begin{document}
+
+
+\part{Software Requirements Specification}
 
 \begin{flushright}
     \rule{\linewidth}{5pt}
@@ -76,30 +82,29 @@
 \chapter{Introduction}
 
 \section{Purpose}
-This document details the planned implementation of the flashcard spaced repetition software Arion.
-It describes the functional and non-functional requirements of the system, providing documentation for users
+This document details the plans for implementation of the spaced repetition software Arion.
+It describes the functional and non-functional requirements of Arion, providing documentation for users
 and the software author.
-It establishes prerequisites for the software to function, and outlines the planned life cycle of the product.
+It establishes prerequisites for the software to function, and uses a use-case diagram to explain the system.
 
 \section{Document Conventions}
-This document was created based on a Latex template for Software Requirement Specification documents that
-respect the IEEE standard.
+This document was created based on a Latex template for Software Requirements Specification documents that
+respects the IEEE standard.
 
 \section{Intended Audience and Reading Suggestions}
+This document is intended for:
 \begin{itemize}
-    \item Language learners, who want to use Arion to study new vocabulary or remember previously seen words.
-    \item Students, who want to memorize content for their classes.
-    \item Programmers who are interested in furthering the software by developing it or
+    \item Users, who want to use Arion to efficiently memorize information.
+    \item Programmers, who are interested in furthering the software by developing it or
 fixing bugs. 
 \end{itemize}
 
-\section{Project Scope}
-Arion is a system used to memorize information. Users can create, manage, and study a list of flashcards.
+\section{Product Scope}
+Arion is a program used to memorize information. Users can create, manage, and study a list of flashcards.
 Arion allows users to build their memory over time, allowing them to remember concepts over long periods of time.
 
 \section{References}
-% flush left because this text is not intended to fill the whole line, so 
-% it throws a warning (ANNOYING!!)
+% flush left because this text is not intended to fill the whole line, so it throws a warning
 \begin{flushleft} 
     GitHub page: \\
     \url{https://github.com/Some-Guy-2017/arion} \\
@@ -107,8 +112,8 @@ Arion allows users to build their memory over time, allowing them to remember co
     \url{https://github.com/jpeisenbarth/SRS-Tex} \\
     Spaced Repetition History: \\
     \url{https://files.eric.ed.gov/fulltext/EJ1143520.pdf} \\
-    Wikipedia page for the Leitner system: \\
-    \url{https://en.wikipedia.org/wiki/Leitner_system} \\
+    Information on the Leitner System: \\
+    \url{https://mindedge.com/learning-science/the-leitner-system-how-does-it-work/} \\
 \end{flushleft}
 
 
@@ -116,37 +121,38 @@ Arion allows users to build their memory over time, allowing them to remember co
 
 \section{Product Perspective}
 Arion was built to be small and simple.
-Arion has no unnecessary features and a simple GUI, improving user experience and making modification by users
-with programming experience easy.
+Arion has minimal features and a simple GUI, allowing users of varying technical proficiency to use Arion,
+and making modification by users with programming experience easy.
 Arion is an open source, standalone application made for a senior year high school final project.
-It runs on Windows, macOS, and Linux.
+It runs on any system that supports Java, such as Windows, macOS, and Linux.
 
 \section{Product Functions}
+\label{sec:Product Functions}
 File:
 \begin{itemize}
-    \item Load: Loads flashcards from the local database.
-    \item Save: Saves flashcards to the local database.
+    \item Load: Loads flashcards from the database.
+    \item Save: Saves flashcards to the database.
 \end{itemize}
 
 Edit:
 \begin{itemize}
     \item Browse: Displays the flashcards in a table.
     \begin{itemize}
-        \item Delete: Delete a flashcard.
-        \item Edit: Edit a flashcard.
+        \item Delete: Deletes a flashcard of the user's choice.
+        \item Edit: Edits a flashcard with new fields specified by the user.
     \end{itemize}
-    \item Add: Adds a flashcard to the list.
+    \item Add: Adds a flashcard to the list with fields specified by the user.
 \end{itemize}
 
 View:
 \begin{itemize}
-    \item Study: Study the flashcards.
-    \item Sort: Sort the flashcards.
+    \item Study: The user reviews the due flashcards.
+    \item Sort: Sorts the flashcards in a manner specified by the user.
 \end{itemize}
 
 Help:
 \begin{itemize}
-    \item Guide: Display a user guide explaining how to use Arion.
+    \item Guide: Displays a user guide explaining how to use Arion.
     \item About: Summarizes Arion's functionality.
 \end{itemize}
 
@@ -154,17 +160,15 @@ Quit: Quits Arion.
 
 \section{User Classes and Characteristics}
 \begin{itemize}
-    \item Language learners, who want to use Arion to study new vocabulary or remember previously seen words.
+    \item Language learners, who want to use Arion to study new or old vocabulary.
     \item Students, who want to memorize content for their classes.
-    \item Programmers who are interested in furthering the software by developing it or fixing bugs.
+    \item Programmers, who are interested in furthering the software by developing it or fixing bugs.
 \end{itemize}
 
 \section{Operating Environment}
 
 \begin{flushleft} % text does not fill the line, so must flush left to avoid error.
-    Arion was designed to work on PCs with a Java Virtual Machine. \\
-
-    It works on the following operating systems: \\
+    Arion is designed to work any PC equipped with a JVM. Valid Operating Systems include:
     \begin{itemize}
         \item Windows Vista
         \item Windows 7
@@ -177,8 +181,8 @@ Quit: Quits Arion.
 \end{flushleft}
 
 \section{Design and Implementation Constraints}
-Arion is implemented in Java, using Java SWING and Abstract Took Kit (AWT) for the Graphical User Interface (GUI).
-It reads and writes to the user’s machine, and requires the Java Virtual Machine (JVM) to be installed.
+Arion is implemented in Java, using Java SWING and AWT for the Graphical User Interface (GUI).
+It reads and writes to the user’s machine, and requires a JVM to be installed.
 
 \section{User Documentation}
 \begin{flushleft}
@@ -188,7 +192,7 @@ It reads and writes to the user’s machine, and requires the Java Virtual Machi
 \end{flushleft}
 
 \section{Assumptions and Dependencies}
-Arion is written in Java, so requires a JVM version of at least 17 to run.
+Arion is written in Java, so requires a JVM version of at least version 17 to run.
 
 
 \chapter{External Interface Requirements}
@@ -196,17 +200,20 @@ Arion is written in Java, so requires a JVM version of at least 17 to run.
 \section{User Interfaces}
 \begin{itemize}
     \item
-        Main Screen: The default screen that shows when the user first starts Arion.
-        It includes a Study button that allows the user to enter Study mode,
+        Main Screen: The default screen that gets displayed when the user starts Arion.
+        It includes a Study button that enters Study mode,
         and an Add button that enters Add mode.
-    \item 
-        Browse: A table listing the flashcards, with editable fields and allowing users to 
-        delete entries. Back button allows users to return to the main screen.
     \item
-        Study: Displays the flashcards and a bar with buttons. The bar either contains a 
-        flip button to flip the card, or a correct button and an incorrect button that
-        allows users to self judge their memory. Has a back button to return to 
-        the main screen.
+        Menu: A menu bar is displayed at the top of the window for users to perform various actions.
+        The menus and their actions are detailed in the \hyperref[sec:Product Functions]{Product Functions} section.
+    \item 
+        Browse: Has a table listing the flashcards, with editable fields, an Update button to confirm changes,
+        and a Delete button to delete entries. A Back button allows users to return to the main screen.
+    \item
+        Study: Displays the flashcards and a bar with buttons.
+        If the front of a flashcard is shown, the bar contains a button to flip the card. 
+        If the back of the card is show, the bar contains a correct and an incorrect button for users to self-score
+        their memory. It has a back button to return to the main screen.
     \item 
         Sort: Has a drop-down allowing users to sort based on flashcard fronts or backs,
         and a drop-down for sorting in lexicographical or reverse lexicographical order. 
@@ -219,18 +226,18 @@ Arion is written in Java, so requires a JVM version of at least 17 to run.
         Has an exit button to return to the main program.
     \item 
         Add: A screen with two labeled editable text fields for users to enter the front and
-        back of a new card. Also has a Confirm button to add the flashcard to the list, and
+        back of a new card. Also has an Add button to add the flashcard to the list, and
         a back button to return.
 \end{itemize}
 
 \section{Hardware Interfaces}
-Since Arion runs in a JVM, all hardware must be supported by Java.
+Since Arion runs in a JVM, all hardware must be able to run Java.
 
 \section{Software Interfaces}
-Arion is written in Java, so requires a JVM version 18 or higher to be installed on the system.
+Arion is written in Java, so requires a JVM version 17 or higher to be installed on the system.
 
 \section{Communications Interfaces}
-Arion is a standalone program, so has no external communications with other services.
+Arion has no external communications with other services.
 
 
 \chapter{System Features}
@@ -238,53 +245,49 @@ Arion is a standalone program, so has no external communications with other serv
 \section{Load}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
-            \makebox[1.7cm][l]{Stimulus:} User clicks the Load menu item. \\
-            \makebox[1.7cm][l]{Stimulus:} User opens Arion. \\
-            \makebox[1.7cm][l]{Response:} The system loads the flashcards from the database file. \\
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Load menu item. \\
+            \makebox[1.7cm][l]{Stimulus:} The user opens Arion. \\
+            \makebox[1.7cm][l]{Response:} Arion loads the flashcards from the database. \\
         \end{flushleft}
 
     \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must open Arion or click the Load menu item.
-            \item The user must confirm overwriting their previous flashcards.
+            \item If there are preexisting flashcards, the user must confirm overwriting them.
         \end{itemize}
 
     \subsection*{System Requirements}
         \begin{itemize}
-            \item The system must have permission to read from the database file.
-            \item The system must have enough memory for the flashcards.
+            \item Arion must have permission to read from the database.
+            \item Arion must have enough memory for the flashcards.
         \end{itemize}
 
 \section{Save}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
-            \makebox[1.7cm][l]{Stimulus:} User clicks the Save menu item. \\
-            \makebox[1.7cm][l]{Stimulus:} User closes Arion. \\
-            \makebox[1.7cm][l]{Response:} Save the program flashcards to the database file.
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Save menu item. \\
+            \makebox[1.7cm][l]{Stimulus:} The user closes Arion. \\
+            \makebox[1.7cm][l]{Response:} Arion saves the program flashcards to the database.
         \end{flushleft}
 
     \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must click the Save menu item or close Arion.
             \item The user must confirm overwriting their previously stored flashcards.
         \end{itemize}
 
     \subsection*{System Requirements}
         \begin{itemize}
-            \item The system must have permission to write to the database file.
+            \item Arion must have permission to write to the database.
         \end{itemize}
 
 \section{Browse}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Browse menu item. \\
-            \makebox[1.7cm][l]{Response:} The system brings up the Browse screen. \\
+            \makebox[1.7cm][l]{Response:} Arion displays the Browse screen. \\
         \end{flushleft}
 
     \subsection*{User Requirements}
-        \begin{itemize}
-            \item The user must click the Browse menu item.
-        \end{itemize}
+    There are no user requirements.
 
     \subsection*{System Requirements}
         \begin{itemize}
@@ -294,48 +297,48 @@ Arion is a standalone program, so has no external communications with other serv
 \section{Delete}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
-            \makebox[1.7cm][l]{Stimulus:} The user clicks the delete button next to the flashcard entry in the browse screen table. \\
-            \makebox[1.7cm][l]{Response:} Delete the selected flashcard. \\
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the delete button next to the flashcard entry in the Browse table. \\
+            \makebox[1.7cm][l]{Response:} Arion deletes the selected flashcard. \\
         \end{flushleft}
 
     \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must click the delete button in the Browse GUI.
             \item The user must confirm their selection.
         \end{itemize}
 
     \subsection*{System Requirements}
         \begin{itemize}
-            \item The system must be in browse mode.
+            \item Arion must be in browse mode.
         \end{itemize}
 
 \section{Edit}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user edits a field in the flashcard table. \\
-            \makebox[1.7cm][l]{Response:} The system stores the edited information. \\
+            \makebox[1.7cm][l]{Response:} Arion stores the edited information. \\
             \smallspace
             \makebox[1.7cm][l]{Stimulus:} The user presses the Update button next to the flashcard in the browse screen table. \\
-            \makebox[1.7cm][l]{Response:} The system writes the edited information to the internally stored list of flashcards. \\
+            \makebox[1.7cm][l]{Response:} Arion writes the edited information to the internally stored list of flashcards. \\
         \end{flushleft}
     \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must click the update button to update the information.
+            \item The user must enter the new information.
+            \item The user must click the Update button to update the information.
         \end{itemize}
 
     \subsection*{System Requirements}
         \begin{itemize}
-            \item The system must be in browse mode.
+            \item Arion must be in browse mode.
         \end{itemize}
 
 \section{Add}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Add menu item. \\
-            \makebox[1.7cm][l]{Response:} The system brings up the add screen. \\
+            \makebox[1.7cm][l]{Response:} Arion displays the Add screen. \\
             \smallspace
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Add button in the add screen. \\
-            \makebox[1.7cm][l]{Response:} The system adds the new contact to the contact list. \\
+            \makebox[1.7cm][l]{Response:} Arion adds the new contact to the contact list. \\
         \end{flushleft}
 
     \subsection*{User Requirements}
@@ -346,74 +349,79 @@ Arion is a standalone program, so has no external communications with other serv
 
     \subsection*{System Requirements}
         \begin{itemize}
-            \item The system must have enough memory for the new flashcard.
+            \item Arion must have enough memory for the new flashcard.
         \end{itemize}
 
 \section{Study}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
-            \makebox[1.7cm][l]{Stimulus:} The user clicks the study button  \\
-            \makebox[1.7cm][l]{Response:} Arion enters study mode. \\
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Study button  \\
+            \makebox[1.7cm][l]{Response:} Arion enters Study mode. \\
         \end{flushleft}
 
     \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must click the study button.
             \item The user must flip the flashcards.
             \item The user must self-score their knowledge of their memory.
         \end{itemize}
 
     \subsection*{System Requirements}
+        \begin{itemize}
+            \item There must be flashcards to study.
+        \end{itemize}
 
 \section{Sort}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Sort menu item. \\
-            \makebox[1.7cm][l]{Response:} The system brings up the sort GUI. \\
+            \makebox[1.7cm][l]{Response:} Arion displays the Sort screen. \\
             \smallspace
-            \makebox[1.7cm][l]{Stimulus:} The user clicks the Sort button in the sort GUI. \\
-            \makebox[1.7cm][l]{Response:} The system sorts the flashcards based on the user's options. \\
+            \makebox[1.7cm][l]{Stimulus:} The user enters the desired sorting configuration. \\
+            \makebox[1.7cm][l]{Response:} Arion stores the configuration. \\
+            \smallspace
+            \makebox[1.7cm][l]{Stimulus:} The user clicks the Sort button in the Sort screen. \\
+            \makebox[1.7cm][l]{Response:} Arion sorts the flashcards based on the user's options. \\
         \end{flushleft}
     \subsection*{User Requirements}
         \begin{itemize}
-            \item The user must click the Sort menu item.
-            \item The user must enter whether to sort the fronts or backs of the cards.
-            \item The user must enter whether to sort the cards in lexicographical or reverse lexicographical order.
-            \item The user must click the Sort button.
+            \item The user must enter whether to sort based on card's front, back, review dates, or review interval.
+            \item The user must enter whether to sort the cards from smallest value to largest value, or largest value to smallest value.
+            \item The user must confirm their selection by clicking the Sort button.
         \end{itemize} 
 
     \subsection*{System Requirements}
-        There are so system requirements. 
+    \begin{itemize}
+        \item There must be flashcards to sort.
+    \end{itemize}
+
 
 \section{Guide}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the Guide menu item. \\
-            \makebox[1.7cm][l]{Response:} The system brings up the guide pop-up window. \\
+            \makebox[1.7cm][l]{Response:} Arion displays the Guide pop-up window. \\
         \end{flushleft}
 
     \subsection*{User Requirements}
-        \begin{itemize}
-            \item The user must click the Guide menu item.
-        \end{itemize}
+    There are no user requirements.
 
     \subsection*{System Requirements}
-        There are no system requirements.
+        \begin{itemize}
+            \item Arion must have permission to read from the Guide text file.
+        \end{itemize}
 
 \section{About}
     \subsection*{Stimulus/Response Sequence}
         \begin{flushleft}
             \makebox[1.7cm][l]{Stimulus:} The user clicks the About menu item. \\
-            \makebox[1.7cm][l]{Response:} The system brings up the about pop-up window. \\
+            \makebox[1.7cm][l]{Response:} Arion displays the About pop-up window. \\
         \end{flushleft}
 
     \subsection*{User Requirements}
-        \begin{itemize}
-            \item The user must click the About menu item.
-        \end{itemize}
+    There are no user requirements.
 
     \subsection*{System Requirements}
-        There are no system requirements.
+    There are no system requirements.
 
 \section{Quit}
     \subsection*{Stimulus/Response Sequence}
@@ -424,12 +432,10 @@ Arion is a standalone program, so has no external communications with other serv
         \end{flushleft}
 
     \subsection*{User Requirements}
-        \begin{itemize}
-            \item The user must click the Quit menu item or the window exit button.
-        \end{itemize}
+    There are no user requirements
 
     \subsection*{System Requirements}
-        There are no system requirements.
+    There are no system requirements.
 
 
 \chapter{Milestones}
@@ -447,6 +453,7 @@ Arion is a standalone program, so has no external communications with other serv
 
 \section{Major tasks}
 Since this is being developed by a single developer, all tasks are assigned to Joseph Hare.
+The tasks are:
 \begin{itemize}
     \item Requirement documentation.
     \item Class and sequence diagram creation.
@@ -462,7 +469,7 @@ Since this is being developed by a single developer, all tasks are assigned to J
 \section{Performance Requirements}
 \begin{itemize}
     \item GUIs shall load within 10ms, otherwise Arion will feel unresponsive to users.
-    \item Sorting shall be performed within 20ms for 1,000 flashcards.
+    \item Sorting shall be performed within 20ms for 5,000 flashcards.
     \item Adding, editing, and deleting flashcards shall take no more than 5ms.
     \item Displaying flashcards shall take no more than 5ms.
         Since this process occurs frequently, a high delay would irritate users.
@@ -472,7 +479,7 @@ Since this is being developed by a single developer, all tasks are assigned to J
 \begin{itemize}
     \item Arion shall be modular and written in an object-oriented programming language,
         to allow for future updates and ease of creation.
-    \item Arion shall be programmed in a portable programming language,
+    \item Arion shall be programmed in an easily portable programming language,
         such as Java, to allow for future porting to other systems.
     \item Arion shall be reliable and robust, so no unexpected inputs will
         make it fail.
@@ -483,14 +490,16 @@ Since this is being developed by a single developer, all tasks are assigned to J
 
 \section{Glossary}
 \begin{itemize}
-    \item Flashcard: A card containing a prompt on the front and information on the back,
-        which is used to memorize information.
-    \item Spaced repetition: a way to memorize information. New and difficult information
+    \item Flashcard: A card containing a prompt on the front and information on the back.
+        They are used to memorize information.
+        Learners read the prompt on the front, and attempt to use that context to recall the information on the back.
+        For instance, a prompt could be "Bonjour" and the back could be "Hello"; the learner has to remember the translation into English.
+    \item Spaced repetition: A way to memorize information. New and difficult information
         is show more frequently than easy and older information, mimicking the pattern
         by which people forget information to optimize learning rate.
     \item Java: A multi-platform object-oriented programming language.
     \item Multi-platform: Able to run on many platforms without needing to alter the code.
-    \item Object-oriented: a style of programming where data and code are organized into
+    \item Object-oriented: A style of programming where data and code are organized into
         separate "objects."
     \item Graphical User Interface (GUI): A visible digital interface where users can 
         interact with the program using buttons, icons, etc.
@@ -499,6 +508,8 @@ Since this is being developed by a single developer, all tasks are assigned to J
     \item Java SWING: A newer graphical toolkit for Java that can emulate the look of multiple platforms.
     \item Virtual Machine (VM): A computer implemented in software, as opposed to hardware.
     \item Java Virtual Machine (JVM): Java's VM used to run compiled Java programs.
+    %\item Oracle: An American technology company that owns and maintains Java.
+    \item Review Interval: The length of time until a flashcard is due.
 \end{itemize}
 
 \section{Analysis Models}
@@ -514,53 +525,55 @@ A standardized approach to learning information is thus needed.
 
 \subsection{Objectives}
 Arion primarily aims to provide a spaced-repetition system to allow learners to 
-systemically built their knowledge over long periods of time. \\
-Arion's objectives are to:
+systemically built their knowledge over long periods of time. Arion's other objectives are to:
 \begin{itemize}
     \item Provide a friendly user interface for managing flashcards.
-    \item Be open-source to allow free usage of Arion.
-    \item Work quickly and robustly for excellent user experience.
+    \item Be open-source to allow free usage.
+    \item Work quickly and robustly for positive user experience.
     \item Allow future cross-platform availability.
-    \item Written in a modular way for future expansions.
-    \item Written clearly using DRY principals for easy development and updates.
+    \item Be written in a modular way for future expansions.
+    \item Be written clearly using DRY principals for easy development and updates.
 \end{itemize}
 
 \subsection{Methodology}
-The development of Arion will following process:
+The development of Arion will follow the following process:
 \begin{enumerate}[1.]
-    \item Create a detailed specification for the development process to follow.
-    \item Detail the specifics of Arion using class and sequence diagrams.
+    \item Document the specification for the development process using a Software Requirements Specification and use cases.
+    \item Detail the specifics of Arion's implementation using class and sequence diagrams.
     \item Implement the back-end of Arion (card creation, deletion, editing, etc.).
-    \item Implement the front-end of Arion (the user interface, buttons, labels, etc.).
-    \item Rigorously test the product using both unit and system tests.
+    \item Implement the front-end of Arion (user interface, buttons, labels, etc.).
+    \item Rigorously test the product using unit and system tests.
     \item Create a user manual.
     \item Deploy Arion.
-    \item Iteratively improving Arion with new features.
 \end{enumerate}
 
 \subsection{History of Product}
-Spaced repetition started in the \nth{19} century, when in 1885 Hermann Ebbinghaus
-hypothesized that the rate at which people forget information increases exponentially
-over time. Further study yielded the following two principals:
+Spaced repetition started in 1885, when Hermann Ebbinghaus hypothesized that the rate at which people forget information increases exponentially
+over time. Further study realized the following two principals:
 \begin{enumerate}[1.]
-    \item Remembering the information leads to better memory than being shown the item.
-    \item Remembering the information after a delay increases memory retention compared
+    \item Recalling information leads to better memory than being shown the item.
+    \item Recalling information after a delay increases memory retention compared
         to recall soon after learning the item.
 \end{enumerate}
 The optimal strategy is to have learners review the information just before it will
 be forgotten. Several estimations of when people will forget knowledge have been made;
-Arion uses the Leitner system to temporally space flashcards, with the modification that
+Arion is based on the Leitner system of temporally space flashcards, with the modification that
 correctly reviewed cards appear again after $\lfloor 1.6^x \rfloor$ days
 (where $x$ is the number of correct reviews).
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}} % hide chapters from ToC
 \setcounter{chapter}{0} % reset numbering
 
+
+
+
+\part{Use Cases}
+
 \chapter{Arion - Load}
 
 \section{Description}
-Load parses the database file (always at the same place relative to the program executable) for flashcards,
-then loads these into memory.
+Load parses the database (always at the same place relative to the program executable) for flashcards,
+then loads them into memory.
 
 \section{Actors}
 \begin{itemize}
@@ -570,54 +583,62 @@ then loads these into memory.
 
 \section{Preconditions}
 \begin{itemize}
-    \item There is a database file for Arion to read from.
+    \item There is a database for Arion to read from.
+    \item Arion has permission to read from the database.
 \end{itemize}
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the Load menu item.
+    \item User clicks the Load menu item.
     \item Ask the user to confirm overwriting the previous flashcards.
-    \item Open the database file for reading.
-    \item Parse the file for flashcards.
+    \item Open the database for reading.
+    \item Parse the database for flashcards.
     \item Validate each flashcard.
     \item Write each flashcard into a local array.
-    \item Close the file.
+    \item Close the database.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
 
-    \subsection{No File}
-    If in step 3 there is no file to read:
+    \subsection{No Database}
+    If in step 3 the database does not yet exist:
     \begin{enumerate}
-        \item Print an error message to the user.
+        \item Display an error message to the user.
         \item End the use case with a failure condition.
     \end{enumerate}
 
     \subsection{Invalid Flashcard}
-    If in step 5 a flashcard is incorrect:
+    If in step 5 a flashcard is formatted incorrectly:
     \begin{enumerate}
-        \item Print a message stating that the file is formatted incorrectly.
+        \item Display an error message stating that the database is formatted incorrectly.
         \item End the use case with a failure condition.
     \end{enumerate}
 
 \section{Key Scenarios}
-    \subsection{Load Flashcards}
-    The flashcards are loaded from the database file.
+    \subsection{Loading Flashcards}
+    The flashcards are being loaded and parsed from the database.
+    This must be performed quickly, as during this time the user has no available actions.
+    If they were to wait for a long period of time without being able to use the program,
+    it would impair user experience.
 
-    \subsection{Failure Loading}
-    Arion exits without loading.
-
+    \subsection{Permission Error}
+    Arion does not have permission to read from the database.
+    In this case, it must be made clear to the user that the flashcards could not
+    be loaded, and some permission altering must be performed on their end in order
+    for this crucial functionality to be used.
+    
 \section{Post-Conditions}
     \subsection{Successful Condition}
     The flashcards were loaded into memory.
 
     \subsection{Failure Condition}
-    A failure message was printed.
+    The flashcards were not loaded, and a failure message was displayed.
+
 
 \chapter{Arion - Save}
 
 \section{Description}
-Save saves the flashcards loaded in memory to the database file.
+Save saves the flashcards loaded in memory to the database.
 
 \section{Actors}
 \begin{itemize}
@@ -627,53 +648,55 @@ Save saves the flashcards loaded in memory to the database file.
 
 \section{Preconditions}
 \begin{itemize}
-    \item The system must have permission to write to the database file.
+    \item Arion must have permission to write to the database.
+    \item The user must confirm the overwriting of any preexisting flashcards.
 \end{itemize}
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the Save menu item.
-    \item Ask the user to confirm overwriting the flashcards stored in the database file.
-    \item Open the database file for writing.
-    \item Write each flashcard to the file.
-    \item Close the file.
+    \item User clicks the Save menu item.
+    \item Ask the user to confirm overwriting the flashcards stored in the database.
+    \item Open the database for writing.
+    \item Write the header into the database.
+    \item Write each flashcard to the database.
+    \item Close the database.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
 
     \subsection{User Declines}
-    If in step 1 the user declines to overwrite the flashcards,
-    end the use case with a failure condition.
+    If in step 1 the user declines to overwrite the flashcards:
+    \begin{enumerate}
+        \item Display an error message to the user.
+        \item End the use case with a failure condition.
+    \end{enumerate}
 
-    \subsection{File Failure}
-    If in step 2 the file cannot be opened for writing:
+    \subsection{Database Failure}
+    If in step 2 the database cannot be opened for writing:
     \begin{enumerate}[1.]
-        \item Print an error message.
+        \item Display an error message.
         \item End the use case with a failure condition.
     \end{enumerate}
 
 \section{Key Scenarios}
-    \subsection{Save Flashcards}
-    The flashcards are saved to the database file.
-    
-    \subsection{User Declines}
-    The user declines to overwrite the existing flashcards.
-
     \subsection{Permission Error}
-    Arion does not have permission to write to the database file.
+    Arion does not have permission to write to the database.
+    In this case, it must be made clear to the user that the flashcards could not
+    be saved, and some permission altering must be performed on their end in order
+    for this crucial functionality to be used.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
-    The flashcards were saved to the database file.
+    The flashcards were saved to the database.
     
     \subsection{Failure Condition}
-    The database file is unchanged, and an error message was printed.
+    The database is unchanged, and an error message was displayed.
 
 \chapter{Arion - Browse}
 
 \section{Description}
 Browse displays the flashcards in a table with editable fields. This lets users
-view their flashcards, and edit / delete them.
+view, edit, and delete their flashcards.
 
 \section{Actors}
 \begin{itemize}
@@ -687,7 +710,7 @@ view their flashcards, and edit / delete them.
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the Browse menu item.
+    \item User clicks the Browse menu item.
     \item Check that there are flashcards to display.
     \item Construct a GUI table.
     \item Fill the table with the flashcard fields.
@@ -704,12 +727,10 @@ view their flashcards, and edit / delete them.
     \end{enumerate}
 
 \section{Key Scenarios}
-    \subsection{Display the Flashcards}
-    The flashcards are displayed to the user in the form of a table.
-
-    \subsection{Display No Flashcard Message}
-    In the circumstance that there are no flashcards to display, Arion will
-    display this to the user.
+    \subsection{Parsing and Rendering of Flashcards}
+    Flashcard parsing and rendering must be performed quickly, as the user
+    must wait for this to complete before proceeding to their next action.
+    A long delay would impair user experience.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
@@ -737,7 +758,7 @@ Delete removes a flashcard from the list stored in memory.
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the Delete button next to a flashcard.
+    \item User clicks the Delete button next to a flashcard.
     \item Ask the user to confirm their selection.
     \item Delete the selected flashcard from the list.
     \item Update the displayed table.
@@ -750,11 +771,13 @@ Delete removes a flashcard from the list stored in memory.
     end the use case with a failure condition.
 
 \section{Key Scenarios}
-    \subsection{Flashcard Deleted}
-    The flashcard is deleted from the list.
-
-    \subsection{User Declines}
-    The user declines deleting the flashcard, so Arion keeps the card.
+    \subsection{Confirmation of Card Deletion}
+    The confirmation of deleting the card must work properly,
+    as Arion is likely the only location of the information stored on the card.
+    Accidentally deleting the card would either permanently lose this information,
+    or force the user to reload from the database, removing their previous work.
+    Furthermore, failing to delete unwanted cards would disable this feature entirely.
+    Thus, for optimal user experience, this part of the feature must be implemented flawlessly.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
@@ -768,7 +791,7 @@ Delete removes a flashcard from the list stored in memory.
 
 \section{Description}
 Edit modifies a flashcard's fields to the user's choice.
-The only field users cannot edit is review date.
+The only fields users cannot edit are review date and review interval.
 
 \section{Actors}
 \begin{itemize}
@@ -777,34 +800,46 @@ The only field users cannot edit is review date.
 
 \section{Preconditions}
 \begin{itemize}
-    \item Arion must be in browse mode.
+    \item Arion must be in Browse mode.
     \item There must be at least one flashcard.
 \end{itemize}
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user enters the new fields for the flashcard.
-    \item The user clicks the Update button.
-    \item The flashcard's fields are updated with the new values.
+    \item User enters the new fields for the flashcard.
+    \item User clicks the Update button.
+    \item Update the flashcard's fields with the new values.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
-    There are no alternative flows of events.
+    There is no alternative flow of events.
 
 \section{Key Scenarios}
-    \subsection{Flashcard is Updated}
-    The user clicks the update button, successfully editing the flashcard's fields.
+    \subsection{User Enters New Information}
+    When the user is entering information, two things are crucial:
+    the process feels intuitive, and it is clear the user has to update the flashcard.
+    If the process is unintuitive and difficult to use,
+    editing many flashcards can become a chore,
+    and ultimately dissuade users from using the program.
+    Additionally, if users do not understand they have to press the Update button to
+    confirm the modification to the flashcard's fields, they could lose their edits.
+    This would make Arion frustrating to use and impair user experience.
+    Thus, some sort of marker (such as an asterisk) should be used to indicated
+    unsaved edits.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
     The flashcard's fields were replaced with the new values.
     
+    \subsection{Failure Condition}
+    The flashcard's fields are unchanged.
 
 \chapter{Arion - Add}
 
 \section{Description}
-Add creates another flashcard with the user's desired fields, and adds it to
-the new card list. The flashcard's date is set to the current day.
+Add displays a screen where the user can input the back and front of a new flashcard,
+then press an Add button to add it to the list of flashcards.
+The flashcard's date is set to the current day.
 
 \section{Actors}
 \begin{itemize}
@@ -816,41 +851,38 @@ the new card list. The flashcard's date is set to the current day.
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the Add menu item or Add button.
-    \item The Add screen is brought up.
-    \item The user enters the flashcard fields.
-    \item The user clicks the Add button.
+    \item User clicks the Add menu item or Add button.
+    \item Display the Add screen.
+    \item User enters the flashcard fields.
+    \item User clicks the Add button.
     \item The flashcard date is set to the current date.
-    \item The flashcard is appended to the list.
+    \item Append the flashcard to the flashcard list.
+    \item Return to the main screen.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
 
     \subsection{Back Button}
-    If while the Add GUI is up the user clicks the back button,
-    Arion will return to the main screen.
-
+    If while the Add screen is displayed the user clicks the back button,
+    return to the main screen.
 
 \section{Key Scenarios}
-    \subsection{User Enters Add GUI}
-    The user clicks on the Add menu item or Add button in the main screen,
-    taking the user to the Add screen.
-
-    \subsection{Flashcard is Added}
-    The user clicks on the Add button in the Add screen, adding the flashcard to
-    the new flashcard list.
+    \subsection{User Enters New Information}
+    When the user is entering information, it is crucial that the process feels intuitive.
+    Adding flashcards is a crucial feature of Arion; without this feature, the program would be useless.
+    Furthermore, hundreds of flashcards may be added; thus, adding must feel easy and intuitive.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
-    The flashcard was added to the new flashcard list.
+    The flashcard was added to the flashcard list.
     
     \subsection{Failure Condition}
-    The flashcard was not added to the new flashcard list.
+    The flashcard was not added to the flashcard list.
 
 \chapter{Arion - Study}
-REMOVE LATER: The length of time until a card is reviewed again is $\lfloor 1.6^x \rfloor$.
 
 \section{Description}
+
 Study enters study mode. First, the user is presented with the front of a flashcard.
 After they have attempted a recall of the information on the back, they flip the card,
 then self-score their memory. If they succeed, the amount of time until the user reviews the card
@@ -865,34 +897,35 @@ If they fail, the flashcard is due the next day. This is repeated for all due fl
 
 \section{Preconditions}
 \begin{itemize}
-    \item There are no preconditions.
+    \item There must be due flashcards today.
 \end{itemize}
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item The user clicks the study button in the main screen.
-    \item The list of flashcards is sorted.
-    \item Bring up the study GUI.
+    \item User clicks the study button in the main screen.
+    \item Prepare a list of the flashcards due today.
+    \item Check that the list is not empty.
+    \item Display the Study screen.
     \item For each flashcard in the list of cards:
     \begin{enumerate}[a.]
-        \item Check that the card is due today.
-        \item If the card is not due it exits the loop.
         \item Show the front of the card.
-        \item The user flips the card
-        \item The user self-scores their performance.
+        \item User flips the card
+        \item User self-scores their performance.
         \item If the user recalls correctly:
         \begin{enumerate}[i)]
             \item Multiply the review interval by $1.6$.
-            \item Update the review date.
-            \item Move the card to the end of the list.
+            \item Update the review date to be the current date plus the review interval.
+            \item Remove the card from the due list.
         \end{enumerate}
         \item Otherwise, if the user has recalled incorrectly:
         \begin{enumerate}[i)]
             \item Set the review interval to $1$.
             \item Set the review date to today.
-            \item Move the card to the end of the cards due today.
+            \item Move the card to the end of the due list.
         \end{enumerate}
     \end{enumerate}
+    \item Return to the main screen.
+    \item Write a congratulatory message on the screen. 
 \end{enumerate}
 
 \section{Alternative Flow of Events}
@@ -900,162 +933,228 @@ If they fail, the flashcard is due the next day. This is repeated for all due fl
     If the user exits early from studying, before all flashcards have been reviewed:
     \begin{enumerate}[1.]
         \item Return to the main screen.
+        \item End the use case with a failure condition.
+    \end{enumerate}
+    
+    \subsection{No Due Flashcards}
+    If in step 3 there are no flashcards due today:
+    \begin{enumerate}[1.]
+        \item Display to the user that there are no due flashcards to study.
+        \item End the use case with a failure condition.
     \end{enumerate}
 
 \section{Key Scenarios}
-    \subsection{User is Studying}
-    The user is in study mode.
+    \subsection{Due Card Finding}
+    The due cards are found before studying.
+    If this process is performed poorly, cards due in the future will be reviewed early,
+    which defeats the beneficial effects of spaced repetition.
+    For optimal user memory, only cards due before or on the current date can be reviewed.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
     All flashcards have been reviewed.
     
     \subsection{Failure Condition}
-    The user has exited early.
+    No flashcards have been studied, or some flashcards have not been studied.
 
 \chapter{Arion - Sort}
 
 \section{Description}
+Sort displays a screen where users can select to sort the flashcards based on their
+front, back, review date, or review interval, and whether to do so from smallest to largest or largest to smallest.
+It also has a Sort button for the user to confirm sorting with the
+defined configuration.
+This feature is helpful for users to parse their flashcards in the Browse screen;
+since the order in which due cards are studied is not meaningful to spaced repetition,
+it has no significant effect on flashcard review.
 
 \section{Actors}
 \begin{itemize}
-    \item 
-    \item 
+    \item User
 \end{itemize}
 
 \section{Preconditions}
 \begin{itemize}
-    \item 
+    \item There must be at least one flashcard to sort.
 \end{itemize}
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item 
+    \item User clicks the Sort menu item.
+    \item Check that there are flashcards to sort.
+    \item Display the Sort screen.
+    \item User enters their sorting configuration.
+    \item User clicks the Sort button.
+    \item Sort the flashcards.
+    \item Return to the main screen.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
 
-    \subsection{ALTFLOW}
-    If in step n ...:
+    \subsection{No Flashcards}
+    If in step 2 there are no flashcards:
     \begin{enumerate}
-        \item 
+        \item Display to the user that there are no flashcards to sort.
+        \item End with a failure condition.
+    \end{enumerate}
+    
+    \subsection{User Exits}
+    If the user presses the back button to exit prematurely:
+    \begin{enumerate}[1.]
+        \item Return to the main screen.
+        \item End with a failure condition.
     \end{enumerate}
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{User Starts the Sorting Process}
+    When the user starts the sorting process, it should be completed quickly,
+    as the program is frozen during this time.
+    It is crucial that users do not have to wait long periods of time for this
+    process to complete to promote a positive user experience.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    The flashcards were sorted according to the user's configuration.
     
     \subsection{Failure Condition}
+    The flashcards were not sorted.
 
 
 \chapter{Arion - Guide}
 
 \section{Description}
+Guide explains to users how to use Arion.
+It displays a pop-up window, with each screen explaining detailing a different feature.
+It explains how to use the feature, where it is located in the program (i.e. in which menu and which buttons to press), and includes images of the GUIs and GUI elements.
+For a list of features, see the \hyperref[sec:Product Functions]{Product Functions} section.
 
 \section{Actors}
 \begin{itemize}
-    \item 
-    \item 
+    \item User
 \end{itemize}
 
 \section{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
+There are no preconditions.
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item 
+    \item User clicks the Guide menu item.
+    \item Read the Guide text from a file.
+    \item Create a window containing the guide information, starting on the first screen.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
 
-    \subsection{ALTFLOW}
-    If in step n ...:
+    \subsection{Text File Not Found}
+    If in step 2 the text file cannot be found:
     \begin{enumerate}
-        \item 
+        \item Display to the user that the file with the Guide text could not be found.
+        \item End the use case with a failure condition.
+    \end{enumerate}
+
+    \subsection{File Permission Error}
+    If in step 2 Arion does not have permission to read from the Guide text file:
+    \begin{enumerate}
+        \item Display to the user that the file with the Guide text could not be read.
+        \item End the use case with a failure condition.
     \end{enumerate}
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{User Loads Guide}
+    The user clicks the Guide menu item.
+    It is important for guide navigation to feel comfortable and intuitive,
+    as users who require this information are more likely to lack technical proficiency.
+    Thus, the guide must be easily understandable by users regardless of technical ability.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    The guide window was successfully created.
     
     \subsection{Failure Condition}
+    The window could not be created, or the Guide text was not found.
+    An error message has been displayed to the user.
 
 
 \chapter{Arion - About}
 
 \section{Description}
+About displays a pop-up window summarizing Arion's functionality.
+It outlines its
+    purpose, 
+    design philosophy,
+    development,
+    and programming language.
 
 \section{Actors}
 \begin{itemize}
-    \item 
-    \item 
+    \item User
 \end{itemize}
 
 \section{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
+There are no preconditions.
 
 \section{Expected Flow of Events}
 \begin{enumerate}[1.]
-    \item 
+    \item User clicks on the About menu item.
+    \item Display a pop-up window with the About information.
 \end{enumerate}
 
 \section{Alternative Flow of Events}
-
-    \subsection{ALTFLOW}
-    If in step n ...:
-    \begin{enumerate}
-        \item 
-    \end{enumerate}
+There is no alternative flow of events.
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{About Screen}
+    The user is viewing the About screen with the About information.
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    A pop-up window was successfully created.
     
     \subsection{Failure Condition}
+    A pop-up window was not created, and an error message has been displayed to the user.
 
 
 \chapter{Arion - Quit}
 
 \section{Description}
+Quit exits the program, saving the flashcards stored in memory to the database.
 
 \section{Actors}
 \begin{itemize}
-    \item 
-    \item 
+    \item User
+    \item Database
 \end{itemize}
 
 \section{Preconditions}
-\begin{itemize}
-    \item 
-\end{itemize}
+There are no preconditions.
 
 \section{Expected Flow of Events}
     \begin{enumerate}[1.]
-        \item The system saves the flashcards to the database.
-        \item The system closes the GUI.
-        \item The system closes.
+        \item User clicks the Quit menu item or window exit button.
+        \item Perform the Save feature without asking user permission to overwrite the preexisting flashcards.
+        \item Close the screen.
+        \item Close.
     \end{enumerate}
 
 \section{Alternative Flow of Events}
-    There are no alternative flows of events.
+
+    \subsection{Database Failure}
+    If in step 1 Arion does not have permission to write to the database, end with a failure condition.
 
 \section{Key Scenarios}
-    \subsection{KEYSCENARIO}
+    \subsection{Successful Database Write}
+    Arion successfully writes to the database.
+    This is the most likely scenario, and is the longest part of the closing process;
+    thus, it must be performed quickly to ensure the user waits a minimal length of time
+    before the program closes.
+
 
 \section{Post-Conditions}
     \subsection{Successful Condition}
+    Arion wrote to the database and closed.
     
     \subsection{Failure Condition}
+    Arion could not write to the database, but has still closed.
 
 
 \end{document}

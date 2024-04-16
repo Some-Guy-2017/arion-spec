@@ -26,12 +26,14 @@ see /home/joe/Documents/documentation/arion-spec for arion spec documentation
     [✓] Delete
     [✓] Edit
     [✓] Add
-    [ ] Study
-        [ ] Review alternative flow of events, key scenarios, and post conditions.
-    [ ] Sort
-    [ ] Guide
-    [ ] About
-    [ ] Quit
-[ ] Make sure the system requirements and use case report preconditions match (or make sense together).
-[ ] Figure out how to insert the use case reports into the document
-[ ] Re-read the SRS
+    [✓] Study
+        [✓] Review alternative flow of events, key scenarios, and post conditions.
+    [✓] Sort
+    [✓] Guide
+    [✓] About
+    [✓] Quit
+[✓] Fix up key scenarios
+[-] Make sure the system requirements and use case report preconditions match (or make sense together).
+[✓] Figure out how to insert the use case reports into the document
+[ ] Re-read the document
+[ ] Change "database file" to just "database"
