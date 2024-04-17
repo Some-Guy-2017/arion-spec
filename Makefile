@@ -18,6 +18,9 @@ view: all
 
 clean:
 	rm -rf ${BUILD_DIR}
+	@mv src/main.tex .
+	rm src/*
+	@mv ./main.tex src/main.tex
 
 ${BUILD_DIR}:
 	mkdir ${BUILD_DIR}
