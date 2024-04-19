@@ -85,7 +85,7 @@
 This document details the plans for implementation of the spaced repetition software Arion.
 It describes the functional and non-functional requirements of Arion, providing documentation for users
 and the software author.
-It establishes prerequisites for the software to function, and uses a use-case diagram to explain the system.
+It establishes prerequisites for the software to function, and uses a use case diagram to explain the system.
 
 \section{Document Conventions}
 This document was created based on a Latex template for Software Requirements Specification documents that
@@ -510,10 +510,21 @@ The tasks are:
     \item Java Virtual Machine (JVM): Java's VM used to run compiled Java programs.
     %\item Oracle: An American technology company that owns and maintains Java.
     \item Review Interval: The length of time until a flashcard is due.
+    \item Use Case Actor: Entities that can perform actions. For example, users can load, edit, and add flashcards, and databases can store and retrieve flashcards.
+    \item Functional Requirement: A fundamental feature of a system.
+
 \end{itemize}
 
 \section{Analysis Models}
-\image[0.4]{arion-use-case-diagram}
+\subsection{Use Case Diagram}
+The following is a use case diagram showing how actors interact with functional requirements:
+\image[0.4]{use-case-diagram}
+
+\subsection{Class Diagram}
+The following is a class diagram showcasing the breakdown of classes, their methods, method parameters and return types, and how the classes interact.
+\image[0.28]{class-diagram}
+
+\subsection{Sequence Diagrams}
 
 \section{Project Proposal}
 
