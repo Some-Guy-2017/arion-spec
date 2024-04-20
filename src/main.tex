@@ -24,14 +24,25 @@
     \end{center}
 }
 
+\newcommand{\svgimage}[2][1]{
+    \begin{center}
+        \scalebox{#1}{
+            \includesvg{#2}
+        }
+    \end{center}
+}
+
 \renewcommand{\labelitemii}{$\circ$}
 
 \usepackage{xcolor}
 \usepackage[shortlabels]{enumitem}
 \usepackage[super]{nth}
+\usepackage{svg}
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 
 \usepackage{graphicx}
-\graphicspath{ {./img/} }
+\graphicspath{ {../img/} }
 
 \usepackage{hyperref}
 \hypersetup{
@@ -522,7 +533,11 @@ The following is a use case diagram showing how actors interact with functional 
 
 \subsection{Class Diagram}
 The following is a class diagram showcasing the breakdown of classes, their methods, method parameters and return types, and how the classes interact.
-\image[0.28]{class-diagram}
+{\fontsize{8}{10}\selectfont
+    \textbf{
+        \svgimage[0.39]{class-diagram}
+    }
+}
 
 \subsection{Sequence Diagrams}
 
@@ -572,13 +587,12 @@ Arion is based on the Leitner system of temporally space flashcards, with the mo
 correctly reviewed cards appear again after $\lfloor 1.6^x \rfloor$ days
 (where $x$ is the number of correct reviews).
 
-\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}} % hide chapters from ToC
-\setcounter{chapter}{0} % reset numbering
-
-
 
 
 \part{Use Cases}
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}} % hide chapters from ToC
+\setcounter{chapter}{0} % reset numbering
 
 \chapter{Arion - Load}
 
