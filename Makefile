@@ -2,11 +2,13 @@
 
 SRC_DIR := ./src/
 SRC_BACKUP := ./.src-backup/
+IMG_DIR := ./img/
 BUILD_DIR := ./build/
 
 TEX_FILE := $(wildcard ${SRC_DIR}/*.tex)
 OUTPUT_FILES := $(TEX_FILE:${SRC_DIR}/%.tex=${BUILD_DIR}/%.pdf)
 BACKUP_FILES := $(wildcard ${SRC_BACKUP}/*)
+IMG_FILES := $(wildcard ${IMG_DIR}/*)
 
 LATEX := pdflatex
 LATEX_ARGS := -output-directory ${BUILD_DIR} -halt-on-error -shell-escape
@@ -43,5 +45,5 @@ clean:
 ${BUILD_DIR}:
 	mkdir ${BUILD_DIR}
 
-${BUILD_DIR}/%.pdf: ${SRC_DIR}/%.tex
+${BUILD_DIR}/%.pdf: ${SRC_DIR}/%.tex ${IMG_FILES}
 	${LATEX} ${LATEX_ARGS} $<

@@ -6,7 +6,19 @@
 \author{Joseph Hare}
 \date{\today}
 
-\setlength\parindent{0pt}
+\usepackage{xcolor}
+\usepackage[shortlabels]{enumitem}
+\usepackage[super]{nth}
+\usepackage{svg}
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+
+\usepackage{graphicx}
+\graphicspath{ {../img/} {./img/} }
+
+\setlist{topsep=1em, itemsep=0.4em, parsep=0em}
+\setlength{\parindent}{0pt}
 
 \makeatletter
 \newcommand{\thetitle}{\@title}
@@ -18,31 +30,39 @@
 \newcommand{\bigspace}{\vspace{1.9cm}}
 \newcommand{\smallspace}{\vspace{0.5cm}}
 
-\newcommand{\image}[2][1]{
+\NewDocumentCommand{\image}{ m O{1} O{\linewidth} }{
     \begin{center}
-        \includegraphics[scale=#1]{#2}
+        \resizebox{#3}{!}{
+            \ifnum#2=0
+                \includegraphics{#1}
+            \else
+                \setlength{\fboxsep}{0pt}%
+                \setlength{\fboxrule}{1pt}%
+                \fbox{%
+                    \includegraphics{#1}%
+                }
+            \fi
+        }
     \end{center}
 }
 
-\newcommand{\svgimage}[2][1]{
+\NewDocumentCommand{\svgimage}{ m O{1} O{\linewidth} }{
     \begin{center}
-        \scalebox{#1}{
-            \includesvg{#2}
+        \resizebox{#3}{!}{
+            \ifnum#2=0
+                \includesvg{#1}
+            \else
+                \setlength{\fboxsep}{0pt}%
+                \setlength{\fboxrule}{1pt}%
+                \fbox{%
+                    \includesvg{#1}%
+                }
+            \fi
         }
     \end{center}
 }
 
 \renewcommand{\labelitemii}{$\circ$}
-
-\usepackage{xcolor}
-\usepackage[shortlabels]{enumitem}
-\usepackage[super]{nth}
-\usepackage{svg}
-%\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-
-\usepackage{graphicx}
-\graphicspath{ {../img/} }
 
 \usepackage{hyperref}
 \hypersetup{
@@ -58,7 +78,6 @@
     linktoc=page       % only page is linked
 }
 
-\setlist{topsep=1em, itemsep=0.4em, parsep=0em}
 
 \begin{document}
 
@@ -138,7 +157,7 @@ Arion is an open source, standalone application made for a senior year high scho
 It runs on any system that supports Java, such as Windows, macOS, and Linux.
 
 \section{Product Functions}
-\label{sec:Product Functions}
+\label{sec:Product-Functions}
 File:
 \begin{itemize}
     \item Load: Loads flashcards from the database.
@@ -216,7 +235,7 @@ Arion is written in Java, so requires a JVM version of at least version 17 to ru
         and an Add button that enters Add mode.
     \item
         Menu: A menu bar is displayed at the top of the window for users to perform various actions.
-        The menus and their actions are detailed in the \hyperref[sec:Product Functions]{Product Functions} section.
+        The menus and their actions are detailed in the \hyperref[sec:Product-Functions]{Product Functions} section.
     \item 
         Browse: Has a table listing the flashcards, with editable fields, an Update button to confirm changes,
         and a Delete button to delete entries. A Back button allows users to return to the main screen.
@@ -529,17 +548,42 @@ The tasks are:
 \section{Analysis Models}
 \subsection{Use Case Diagram}
 The following is a use case diagram showing how actors interact with functional requirements:
-\image[0.4]{use-case-diagram}
+\image{use-case-diagram}
 
 \subsection{Class Diagram}
 The following is a class diagram showcasing the breakdown of classes, their methods, method parameters and return types, and how the classes interact.
 {\fontsize{8}{10}\selectfont
     \textbf{
-        \svgimage[0.39]{class-diagram}
+        \svgimage{class-diagram}
     }
 }
 
 \subsection{Sequence Diagrams}
+
+\subsubsection*{Load Sequence Diagram}
+The following is a sequence diagram depicting the method calls for the Load feature.
+First, the user clicks the Load menu item.
+This causes ArionDisplay to call the Load menu's menuCallback, which calls the loading functionality in loadFlashcards.
+Arion confirms overwriting the flashcards stored in memory with the user, then uses the Database class to parse the flashcards from a data file.
+It then returns these flashcards, which are written into memory.
+\image{load-sd}[0]
+
+\subsubsection*{Save Sequence Diagram}
+The following describes the method calls for the Save feature.
+It follows a similar path as the Load functionality;
+    its menu item is clicked, ArionDisplay runs the corresponding callback, Arion calls a function to perform the desired functionality,
+    and Arion confirms the User's choice.
+In this case, Arion is confirming the overwriting of the flashcards stored in the data file, rather than those currently stored in memory.
+Arion then uses the Database class to format and write the flashcards to the data file.
+\image{save-sd}[0]
+
+\subsubsection*{Browse Sequence Diagram}
+This sequence diagram shows the method calls involved in executing the Browse feature.
+After the menu item is clicked and the corresponding menuCallback is run, Arion calls ArionDisplay to display the browse screen.
+It passes the flashcards, since these are displayed in the screen, and an edit and delete callback.
+When ArionDisplay adds the delete and edit buttons, it sets both of their ActionListeners to perform these callbacks,
+which perform functionality with data in the Arion class.
+\image{browse-sd}[0]
 
 \section{Project Proposal}
 
@@ -1051,7 +1095,7 @@ it has no significant effect on flashcard review.
 Guide explains to users how to use Arion.
 It displays a pop-up window, with each screen explaining detailing a different feature.
 It explains how to use the feature, where it is located in the program (i.e. in which menu and which buttons to press), and includes images of the GUIs and GUI elements.
-For a list of features, see the \hyperref[sec:Product Functions]{Product Functions} section.
+For a list of features, see the \hyperref[sec:Product-Functions]{Product Functions} section.
 
 \section{Actors}
 \begin{itemize}
