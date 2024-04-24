@@ -13,12 +13,14 @@
 %\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{xparse}
+\usepackage{indentfirst}
 
 \usepackage{graphicx}
 \graphicspath{ {../img/} {./img/} }
 
 \setlist{topsep=1em, itemsep=0.4em, parsep=0em}
-\setlength{\parindent}{0pt}
+\setlength{\parindent}{16pt}
+\setlength{\parskip}{6pt}
 
 \makeatletter
 \newcommand{\thetitle}{\@title}
@@ -332,9 +334,7 @@ Arion has no external communications with other services.
         \end{flushleft}
 
     \subsection*{User Requirements}
-        \begin{itemize}
-            \item The user must confirm their selection.
-        \end{itemize}
+        There are no user requirements.
 
     \subsection*{System Requirements}
         \begin{itemize}
@@ -551,7 +551,7 @@ The following is a use case diagram showing how actors interact with functional 
 \image{use-case-diagram}
 
 \subsection{Class Diagram}
-The following is a class diagram showcasing the breakdown of classes, their methods, method parameters and return types, and how the classes interact.
+The following is a class diagram showcasing the breakdown of classes, their methods, method parameters and return types, and how they interact.
 {\fontsize{8}{10}\selectfont
     \textbf{
         \svgimage{class-diagram}
@@ -559,18 +559,17 @@ The following is a class diagram showcasing the breakdown of classes, their meth
 }
 
 \subsection{Sequence Diagrams}
+The sequence diagrams describe how objects interact in order to perform a given feature.
 
 \subsubsection*{Load Sequence Diagram}
-The following is a sequence diagram depicting the method calls for the Load feature.
-First, the user clicks the Load menu item.
+To begin the Load feature, the user clicks the Load menu item.
 This causes ArionDisplay to call the Load menu's menuCallback, which calls the loading functionality in loadFlashcards.
 Arion confirms overwriting the flashcards stored in memory with the user, then uses the Database class to parse the flashcards from a data file.
-It then returns these flashcards, which are written into memory.
+The Database then returns these flashcards, which are written into memory.
 \image{load-sd}[0]
 
 \subsubsection*{Save Sequence Diagram}
-The following describes the method calls for the Save feature.
-It follows a similar path as the Load functionality;
+The method calls for saving flashcards is similar to those of the Load functionality;
     its menu item is clicked, ArionDisplay runs the corresponding callback, Arion calls a function to perform the desired functionality,
     and Arion confirms the User's choice.
 In this case, Arion is confirming the overwriting of the flashcards stored in the data file, rather than those currently stored in memory.
@@ -578,12 +577,102 @@ Arion then uses the Database class to format and write the flashcards to the dat
 \image{save-sd}[0]
 
 \subsubsection*{Browse Sequence Diagram}
-This sequence diagram shows the method calls involved in executing the Browse feature.
-After the menu item is clicked and the corresponding menuCallback is run, Arion calls ArionDisplay to display the browse screen.
+After the Browse menu item is clicked and the corresponding menuCallback is run,
+    Arion calls the displayBrowseScreen method of ArionDisplay to display the browse screen.
 It passes the flashcards, since these are displayed in the screen, and an edit and delete callback.
-When ArionDisplay adds the delete and edit buttons, it sets both of their ActionListeners to perform these callbacks,
-which perform functionality with data in the Arion class.
+When ArionDisplay creates the delete and edit buttons, it sets their ActionListeners to perform one of these callbacks,
+    which perform functionality with data in the Arion class.
 \image{browse-sd}[0]
+
+\subsubsection*{Delete Sequence Diagram}
+When the delete button is clicked next to a flashcard in the Browse screen,
+    ArionDisplay calls the deleteCallback passed in the displayBrowseScreen method, passing the index of the flashcard to delete.
+This then calls the deleteFlashcard method of Arion with the flashcard index,
+    which deletes the selected card while preserving order.
+\image{delete-sd}[0]
+
+\subsubsection*{Edit Sequence Diagram}
+In the Edit feature, when the Update button is clicked next to a flashcard in the Browse screen,
+    ArionDisplay runs the editCallback passed in the displayBrowseScreen method.
+This callback takes the index of the flashcard to edit, as well as the new fields to replace the previous fields with.
+The Arion class replaces the flashcard's fields in the editFlashcard method, then returns.
+\image{edit-sd}[0]
+
+\subsubsection*{Add Sequence Diagram}
+There are two ways the Add feature can start:
+\begin{itemize}
+    \item If the user clicks the main screen Add button, ArionDisplay calls displayAddScreen with
+        the addCallback passed in displayMainScreen.
+    \item If the Add menu is clicked, ArionDisplay calls the menuCallback, which then calls displayAddScreen with
+        the callback it passed in displayMainScreen.
+\end{itemize}
+After either of these has occurred, the user enters the information for the new flashcard in the Add screen, then clicks the Add screen Add button.
+This triggers ArionDisplay to call the addCallback, which calls addFlashcard with the new flashcard fields.
+The flashcard is constructed from the fields and added to the list, then the function return.
+\image{add-sd}[0]
+
+\subsubsection*{Study Sequence Diagram}
+\noindent
+The Study feature can be started in two ways:
+\begin{itemize}
+    \item The user clicks the Study button in the main screen, which calls the studyCallback passed in displayMainScreen.
+    \item The user clicks the Study Menu, which calls its corresponding menuCallback.
+\end{itemize}
+Since both of these callbacks perform the same functionality,
+    they are both represented as sortCallback.run() in the sequence diagram.
+    
+The callbacks run studyFlashcards, which prepares a list of due flashcards, and writes them to Arion's dueFlashcards field.
+It then calls displayStudyScreen with the first of these flashcards, with
+    front set to true so ArionDisplay will show the front of the card, 
+    and a reviewCallback for ArionDisplay to execute once the card has been reviewed.
+Now, all functions have completed, so they return.
+
+Once the Flip button on the front of the Study screen is clicked,
+it activates an ActionListener that calls displayStudyScreen with the same parameters, but with front now set to false.
+When either of the Correct or Incorrect Review buttons have been clicked on the back of the flashcard,
+    an ActionListener calls the reviewCallback with the success value (true for the Correct button, false for the Incorrect button).
+    
+The reviewCallback calls the updateReviewDate method on the first flashcard in the dueFlashcards list with the success value it was passed.
+Then, it either removes the flashcard if it was recalled successfully, or moves the flashcard to the end of the list if it was not.
+Lastly, it checks if there are still due flashcards.
+If not, it returns; otherwise, it calls displayStudyScreen with the next flashcard, and the cycle repeats until all flashcards have been studied.
+\image{study-sd}[0]
+
+\subsubsection*{Sort Sequence Diagram}
+The Sort feature starts when the user clicks the Sort menu item.
+This causes ArionDisplay to call the corresponding menuCallback,
+    which calls the displaySortScreen method with a callback for when the user clicks the Sort button.
+After the user clicks the Sort button and the callback is run,
+    Arion calls the sortFlashcards method with the flashcard field to sort by and whether to sort it in reversed order.
+The flashcards are sorted according to the user's configuration, and the methods return.
+\image{sort-sd}[0]
+
+\subsubsection*{Guide Sequence Diagram}
+The Guide feature is started once the user clicks the Guide menu item.
+This causes ArionDisplay to call displayGuidePage with a value 0, which displays the first guide page in a pop-up window.
+The page content is then gotten from the GuideReader by calling readPage with the page index, which starts at 0.
+It then displays the guide content, and returns.
+
+When the user clicks the Next button in the Guide window, the ActionListener calls displayGuidePage with the next page index.
+The same process occurs, where ArionDisplay gets the GuideElements from the GuideReader and displays them.
+
+Lastly, if the user clicks the Previous button, the ActionListener calls the displayGuidePage with the previous page index,
+and repeats the same process to display it.
+\image{guide-sd}[0]
+
+\subsubsection*{About Sequence Diagram}
+About requires minimal method calls: when its menu is clicked, the callback is run, calling displayAboutScreen.
+This generates a pop-up window with the About screen description, then returns.
+\image{about-sd}[0]
+
+\subsubsection*{Quit Sequence Diagram}
+Quit is similarly simple to About. It can be activated in two ways:
+\begin{itemize}
+    \item If the Quit menu is clicked, its callback is run, which calls the quit method.
+        The quit method saves the flashcards, and then quits.
+    \item If the window exit button is clicked, Arion directly runs the quit method, which performs the same process as when the Quit menu is clicked.
+\end{itemize}
+\image{quit-sd}[0]
 
 \section{Project Proposal}
 
