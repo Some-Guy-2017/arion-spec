@@ -10,6 +10,8 @@ OUTPUT_FILES := $(TEX_FILE:${SRC_DIR}/%.tex=${BUILD_DIR}/%.pdf)
 BACKUP_FILES := $(wildcard ${SRC_BACKUP}/*)
 IMG_FILES := $(wildcard ${IMG_DIR}/*)
 
+UNIVERSAL_REQUIREMENTS := ${IMG_FILES} ./Makefile
+
 LATEX := pdflatex
 LATEX_ARGS := -output-directory ${BUILD_DIR} -halt-on-error -shell-escape
 PDF_VIEWER := zathura
@@ -45,5 +47,7 @@ clean:
 ${BUILD_DIR}:
 	mkdir ${BUILD_DIR}
 
-${BUILD_DIR}/%.pdf: ${SRC_DIR}/%.tex ${IMG_FILES}
+${BUILD_DIR}/%.pdf: ${SRC_DIR}/%.tex ${UNIVERSAL_REQUIREMENTS}
+	${LATEX} ${LATEX_ARGS} $<
+	@# run twice so table of contents is correct
 	${LATEX} ${LATEX_ARGS} $<
