@@ -25,6 +25,7 @@ view: all
 clean:
 
 	rm -rf ${BUILD_DIR}
+	rm -rf ./svg-inkscape/
 
 	@# move files from backup dir to source dir
 	@if [ ! -z "${BACKUP_FILES}" ]; then \
