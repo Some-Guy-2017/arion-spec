@@ -621,7 +621,7 @@ The Study feature can be started in two ways:
     \item The user clicks the Study Menu, which calls its corresponding menuCallback.
 \end{itemize}
 Since both of these callbacks perform the same functionality,
-    they are both represented as sortCallback.run() in the sequence diagram.
+    they are both represented as studyCallback.run() in the sequence diagram.
     
 The callbacks run studyFlashcards, which prepares a list of due flashcards, and writes them to Arion's dueFlashcards field.
 It then calls displayStudyScreen with the first of these flashcards, with
